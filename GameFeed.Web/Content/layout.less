@@ -1,0 +1,40 @@
+﻿/*
+    Styling that applies to the page layout
+*/
+
+@import "colors.less";
+
+/* Sidebar */
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 300px;
+    background-color: @nav;
+
+    #logo {
+        text-align: center;
+        background-color: @base;
+        padding: 10px 0 10px 0;
+        border-bottom: 1px solid darken(white, 10%);
+
+        h1 {
+            font-size: 40px;
+
+            span {
+                font-weight: 400;
+            }
+        }
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        color: white;
+        margin: 0;
+    }
+}
+
+/* Content */
+#content {
+    margin-left: 300px;
+}

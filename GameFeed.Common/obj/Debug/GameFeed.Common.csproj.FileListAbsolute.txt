@@ -1,0 +1,5 @@
+C:\dev\GameFeed\GameFeed.Common\bin\Debug\GameFeed.Common.dll
+C:\dev\GameFeed\GameFeed.Common\bin\Debug\GameFeed.Common.pdb
+C:\dev\GameFeed\GameFeed.Common\obj\Debug\GameFeed.Common.csprojResolveAssemblyReference.cache
+C:\dev\GameFeed\GameFeed.Common\obj\Debug\GameFeed.Common.dll
+C:\dev\GameFeed\GameFeed.Common\obj\Debug\GameFeed.Common.pdb

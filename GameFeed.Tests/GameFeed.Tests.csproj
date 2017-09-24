@@ -91,6 +91,18 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GameFeed.Common\GameFeed.Common.csproj">
+      <Project>{33d63980-9c23-4a5d-97e9-b7f870030f9d}</Project>
+      <Name>GameFeed.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GameFeed.Domain\GameFeed.Domain.csproj">
+      <Project>{e7a8ed8c-2974-4190-9853-838ed95170e3}</Project>
+      <Name>GameFeed.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GameFeed.Services\GameFeed.Services.csproj">
+      <Project>{d17c31c0-45ea-4f87-8666-0db2b6056d88}</Project>
+      <Name>GameFeed.Services</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GameFeed.Web\GameFeed.Web.csproj">
       <Project>{DF3F071C-38C0-46C3-B45B-E79204D437B3}</Project>
       <Name>GameFeed.Web</Name>

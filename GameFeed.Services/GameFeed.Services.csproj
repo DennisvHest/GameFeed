@@ -40,7 +40,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GameService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\GameDetailViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GameFeed.Common\GameFeed.Common.csproj">
+      <Project>{33d63980-9c23-4a5d-97e9-b7f870030f9d}</Project>
+      <Name>GameFeed.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GameFeed.Domain\GameFeed.Domain.csproj">
+      <Project>{e7a8ed8c-2974-4190-9853-838ed95170e3}</Project>
+      <Name>GameFeed.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

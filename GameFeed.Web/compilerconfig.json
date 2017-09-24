@@ -1,0 +1,12 @@
+[
+  {
+    "outputFile": "Content/general.css",
+    "inputFile": "Content/general.less",
+    "sourceMap": false
+  },
+  {
+    "outputFile": "Content/layout.css",
+    "inputFile": "Content/layout.less",
+    "sourceMap": false
+  }
+]
