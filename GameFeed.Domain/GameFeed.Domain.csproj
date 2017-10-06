@@ -38,6 +38,10 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\RestSharp.105.2.3\lib\net452\RestSharp.dll</HintPath>
       <Private>True</Private>
@@ -53,14 +57,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApiEntities\ApiGame.cs" />
+    <Compile Include="ApiEntities\ApiGamePlatform.cs" />
+    <Compile Include="ApiRepositories\ApiClient.cs" />
+    <Compile Include="ApiRepositories\GameApiRepository.cs" />
+    <Compile Include="ApiRepositories\PlatformApiRepository.cs" />
+    <Compile Include="Entities\GamePlatform.cs" />
+    <Compile Include="Entities\Genre.cs" />
+    <Compile Include="Entities\Platform.cs" />
+    <Compile Include="Migrations\201710042039187_Initial.cs" />
+    <Compile Include="Migrations\201710042039187_Initial.Designer.cs">
+      <DependentUpon>201710042039187_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ObjectMappers\ApiGameMapper.cs" />
     <Compile Include="Repositories\GameRepository.cs" />
     <Compile Include="Repositories\DatabaseContext.cs" />
     <Compile Include="Entities\Game.cs" />
     <Compile Include="Entities\Image.cs" />
-    <Compile Include="Migrations\201709241708391_Initial.cs" />
-    <Compile Include="Migrations\201709241708391_Initial.Designer.cs">
-      <DependentUpon>201709241708391_Initial.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -75,11 +88,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201709241708391_Initial.resx">
-      <DependentUpon>201709241708391_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201710042039187_Initial.resx">
+      <DependentUpon>201710042039187_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

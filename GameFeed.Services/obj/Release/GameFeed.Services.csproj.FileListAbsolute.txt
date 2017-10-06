@@ -1,0 +1,15 @@
+C:\dev\GameFeed\GameFeed.Services\bin\Release\GameFeed.Services.dll
+C:\dev\GameFeed\GameFeed.Services\bin\Release\GameFeed.Services.pdb
+C:\dev\GameFeed\GameFeed.Services\bin\Release\GameFeed.Common.dll
+C:\dev\GameFeed\GameFeed.Services\bin\Release\GameFeed.Domain.dll
+C:\dev\GameFeed\GameFeed.Services\bin\Release\EntityFramework.dll
+C:\dev\GameFeed\GameFeed.Services\bin\Release\RestSharp.dll
+C:\dev\GameFeed\GameFeed.Services\bin\Release\Newtonsoft.Json.dll
+C:\dev\GameFeed\GameFeed.Services\bin\Release\GameFeed.Common.pdb
+C:\dev\GameFeed\GameFeed.Services\bin\Release\GameFeed.Domain.pdb
+C:\dev\GameFeed\GameFeed.Services\bin\Release\EntityFramework.xml
+C:\dev\GameFeed\GameFeed.Services\bin\Release\RestSharp.xml
+C:\dev\GameFeed\GameFeed.Services\bin\Release\Newtonsoft.Json.xml
+C:\dev\GameFeed\GameFeed.Services\obj\Release\GameFeed.Services.csprojResolveAssemblyReference.cache
+C:\dev\GameFeed\GameFeed.Services\obj\Release\GameFeed.Services.dll
+C:\dev\GameFeed\GameFeed.Services\obj\Release\GameFeed.Services.pdb

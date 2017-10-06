@@ -1,4 +1,56 @@
-﻿
+﻿@using GameFeed.Common
+@using GameFeed.Services.ViewModels
+
+@model GameDetailViewModel
+
 @{
-    ViewBag.Title = "Detail";
+    ViewBag.Title = Model.Name;
 }
+
+@section Css {
+    <link href="~/Content/game-detail.css" rel="stylesheet" />
+
+    <style>
+        #banner {
+            background-image: url("@Model.Screenshots.TakeRandom()");
+        }
+    </style>
+}
+<div id="banner-wrapper">
+    <div id="banner">
+        
+    </div>
+    <div id="title-wrapper">
+        <div id="game-title" class="col-sm-offset-1">
+            <h1>@Model.Name</h1>
+            <h2>@Model.FirstReleaseDate</h2>
+        </div>
+    </div>
+</div>
+<div id="game-content">
+    <div id="game-cover" class="col-sm-offset-1">
+        <img src="@Model.Cover"/>
+    </div>
+    <div id="game-feed">
+        <div id="game-summary">
+            <b class="m-b-5">Genres</b>
+            <div class="tag-area">
+                @foreach (string genreName in Model.Genres) {
+                    <button class="tag"><i class="fa fa-tag" aria-hidden="true"></i>@genreName</button>
+                }
+            </div>
+            <b class="m-v-5">Platforms</b>
+            <div class="tag-area m-b-10">
+                @foreach (string platformName in Model.Platforms) {
+                    <button class="tag"><i class="fa fa-gamepad" aria-hidden="true"></i>@platformName</button>
+                }
+            </div>
+            <div id="summary-text" class="p-t-10">
+                @Model.Summary
+            </div>
+        </div>
+    </div>
+    <div id="game-info">
+
+    </div>
+</div>

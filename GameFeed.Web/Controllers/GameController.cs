@@ -13,6 +13,8 @@ namespace GameFeed.Web.Controllers {
         }
 
         public ActionResult Detail(int id) {
+
+
             GameDetailViewModel viewModel = gameService.Detail(id);
             return View(viewModel);
         }

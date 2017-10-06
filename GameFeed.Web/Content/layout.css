@@ -3,32 +3,33 @@
 */
 /* Colors */
 /* Sidebar */
-nav {
+#side-nav {
   position: fixed;
   top: 0;
   left: 0;
   bottom: 0;
   width: 300px;
   background-color: #121621;
+  z-index: 1;
 }
-nav #logo {
+#side-nav #logo {
   text-align: center;
   background-color: #242d42;
   padding: 10px 0 10px 0;
   border-bottom: 1px solid #e6e6e6;
 }
-nav #logo h1 {
+#side-nav #logo h1 {
   font-size: 40px;
 }
-nav #logo h1 span {
+#side-nav #logo h1 span {
   font-weight: 400;
 }
-nav h1,
-nav h2,
-nav h3,
-nav h4,
-nav h5,
-nav h6 {
+#side-nav h1,
+#side-nav h2,
+#side-nav h3,
+#side-nav h4,
+#side-nav h5,
+#side-nav h6 {
   color: white;
   margin: 0;
 }

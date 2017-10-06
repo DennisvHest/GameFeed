@@ -1,12 +1,14 @@
-[
+﻿[
   {
     "outputFile": "Content/general.css",
-    "inputFile": "Content/general.less",
-    "sourceMap": false
+    "inputFile": "Content/general.less"
   },
   {
     "outputFile": "Content/layout.css",
-    "inputFile": "Content/layout.less",
-    "sourceMap": false
+    "inputFile": "Content/layout.less"
+  },
+  {
+    "outputFile": "Content/game-detail.css",
+    "inputFile": "Content/game-detail.less"
   }
 ]

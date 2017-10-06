@@ -7,11 +7,15 @@ namespace GameFeed.Domain.Entities {
     public class Game {
 
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int ID { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Summary { get; set; }
         public DateTime FirstReleaseDate { get; set; }
-        public IEnumerable<Image> Screenshots { get; set; }
-        public Image Cover { get; set; }
+        public float Rating { get; set; }
+
+        public virtual Image Cover { get; set; }
+        public virtual ICollection<Genre> Genres { get; set; }
+        public virtual ICollection<Image> Screenshots { get; set; }
+        public virtual ICollection<GamePlatform> GamePlatforms { get; set; }
     }
 }

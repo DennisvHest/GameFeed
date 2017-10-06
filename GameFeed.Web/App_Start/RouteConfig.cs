@@ -11,6 +11,12 @@ namespace GameFeed.Web {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "Detail",
+                url: "game/{id}",
+                defaults: new { controller = "Game", action = "Detail" }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

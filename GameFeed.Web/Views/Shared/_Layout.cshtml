@@ -7,12 +7,14 @@
     <title>@ViewBag.Title - GameFeed</title>
 
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Raleway" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Raleway:400,700" rel="stylesheet">
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
 
     <!-- Styling -->
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/general.css" rel="stylesheet" />
     <link href="~/Content/layout.css" rel="stylesheet" />
+    @RenderSection("Css", false)
 </head>
 <body>
     <nav id="side-nav">
