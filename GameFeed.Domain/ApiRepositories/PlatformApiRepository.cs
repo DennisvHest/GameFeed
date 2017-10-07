@@ -10,7 +10,7 @@ namespace GameFeed.Domain.ApiRepositories {
         IEnumerable<Platform> GetPlatforms(IEnumerable<int> platformIds);
     }
 
-    public class PlatformApiRepository {
+    public class PlatformApiRepository : IPlatformApiRepository {
 
         private readonly IApiClient _apiClient;
 

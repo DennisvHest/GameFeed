@@ -33,7 +33,9 @@ namespace GameFeed.Web.Infrastructure {
 
             kernel.Bind<IApiClient>().To<ApiClient>();
             kernel.Bind<IGameApiRepository>().To<GameApiRepository>();
+
             kernel.Bind<IGameRepository>().To<GameRepository>();
+            kernel.Bind<IPlatformApiRepository>().To<PlatformApiRepository>();
 
             kernel.Bind<IGameService>().To<GameService>();
         }

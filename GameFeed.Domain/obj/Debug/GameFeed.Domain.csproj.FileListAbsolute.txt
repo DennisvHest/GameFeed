@@ -16,3 +16,4 @@ C:\dev\GameFeed\GameFeed.Domain\obj\Debug\GameFeed.Domain.dll
 C:\dev\GameFeed\GameFeed.Domain\obj\Debug\GameFeed.Domain.pdb
 C:\dev\GameFeed\GameFeed.Domain\obj\Debug\GameFeed.Domain.Migrations.Initial.resources
 C:\dev\GameFeed\GameFeed.Domain\obj\Debug\GameFeed.Domain.csproj.GenerateResource.Cache
+C:\dev\GameFeed\GameFeed.Domain\obj\Debug\GameFeed.Domain.Migrations.Ratingadded.resources

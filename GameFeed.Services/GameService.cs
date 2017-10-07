@@ -44,13 +44,14 @@ namespace GameFeed.Services {
                 game = gameRepository.GetGame(id);
             } else {
                 game = gameApiRepository.GetGame(id);
-                gameRepository.InsertGame(game);
+                gameRepository.Insert(game);
             }
 
             GameDetailViewModel viewModel = new GameDetailViewModel() {
                 Name = game.Name,
                 Cover = game.Cover.URL,
                 FirstReleaseDate = game.FirstReleaseDate.ToShortDateString(),
+                Rating = game.Rating,
                 Genres = game.Genres.Select(g => g.Name),
                 Platforms = game.GamePlatforms.Select(x => x.Platform.Name),
                 Screenshots = game.Screenshots.Select(s => s.URL),

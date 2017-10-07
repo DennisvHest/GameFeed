@@ -10,7 +10,7 @@ namespace GameFeed.Domain.Repositories {
 
         bool GameExistsInDatabase(int id);
         Game GetGame(int id);
-        void InsertGame(Game game);
+        void Insert(Game game);
     }
 
     public class GameRepository : IGameRepository {
@@ -38,7 +38,7 @@ namespace GameFeed.Domain.Repositories {
         /// Inserts the given game into the database
         /// </summary>
         /// <param name="game">Game to be inserted into the database</param>
-        public void InsertGame(Game game) {
+        public void Insert(Game game) {
             //Don't add already existing entries into the database
             DbSet<Genre> existingGenres = context.Genres;
 

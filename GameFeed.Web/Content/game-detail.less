@@ -2,7 +2,7 @@
 
 @import "colors.less";
 
-@cover-width: 240px;
+@side-width: 240px;
 
 #banner-wrapper {
     width: 100%;
@@ -28,14 +28,14 @@
         bottom: 0;
 
         #game-title {
-            margin-left: @cover-width;
+            margin-left: @side-width;
             color: white;
             text-shadow: 1px 1px 2px darkslategrey;
 
             h1, h2 {
                 margin: 5px 0;
             }
-            
+
             h1 {
                 font-size: 52px;
             }
@@ -56,7 +56,7 @@
     height: -webkit-fill-available;
 
     #game-cover {
-        width: @cover-width;
+        width: @side-width;
         transform: translateY(-50%);
         background-color: @background;
         display: inline-block;
@@ -85,6 +85,36 @@
         #summary-text {
             border-top: 1px solid;
             border-top-color: darken(@background, 15%);
+        }
+    }
+
+    #game-info {
+        width: @side-width;
+        float: left;
+
+        #game-rating {
+            height: 120px;
+            width: 120px;
+            transform: translateY(-50%);
+            border-radius: 50%;
+            background-color: @background;
+
+            .progress-circle {
+                height: 120px;
+                transform: rotate(-90deg);
+
+                .progress-circle-value {
+                    animation: progress 2s;
+                }
+            }
+
+            h1 {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -100%);
+                color: lighten(black, 30%);
+            }
         }
     }
 }

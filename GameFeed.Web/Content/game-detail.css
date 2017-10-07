@@ -71,3 +71,28 @@
   border-top: 1px solid;
   border-top-color: #cbcbcb;
 }
+#game-content #game-info {
+  width: 240px;
+  float: left;
+}
+#game-content #game-info #game-rating {
+  height: 120px;
+  width: 120px;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  background-color: #f1f1f1;
+}
+#game-content #game-info #game-rating .progress-circle {
+  height: 120px;
+  transform: rotate(-90deg);
+}
+#game-content #game-info #game-rating .progress-circle .progress-circle-value {
+  animation: progress 2s;
+}
+#game-content #game-info #game-rating h1 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -100%);
+  color: #4d4d4d;
+}

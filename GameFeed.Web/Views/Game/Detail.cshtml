@@ -1,10 +1,26 @@
-﻿@using GameFeed.Common
+﻿@using System.Globalization
+@using GameFeed.Common
 @using GameFeed.Services.ViewModels
+@using Newtonsoft.Json
 
 @model GameDetailViewModel
 
 @{
     ViewBag.Title = Model.Name;
+
+    //Rating circle calculations
+    const int ratingDiameter = 120;
+    const int ratingStrokeWidth = 12;
+    const int ratingRadius = ratingDiameter / 2;
+    const int ratingRadiusMinusBorder = ratingRadius - ratingStrokeWidth;
+    const float ratingDashArray = (float) (2 * Math.PI * ratingRadiusMinusBorder);
+    float ratingInverse = 1f - Model.Rating / 100f;
+    float ratingOffset = ratingDashArray * ratingInverse;
+
+    //Map rating to color
+    int red = (int) (100f - Model.Rating ).Map(0, 100, 0, 255);
+    int green = (int) Model.Rating.Map(0, 100, 0, 255);
+    string ratingColor = $"rgb({red},{green},0)";
 }
 
 @section Css {
@@ -14,12 +30,24 @@
         #banner {
             background-image: url("@Model.Screenshots.TakeRandom()");
         }
+
+        .progress-circle-value {
+            stroke-dasharray: @ratingDashArray.ToString("G", new CultureInfo("en-US", false).NumberFormat);
+            stroke-dashoffset: @ratingOffset.ToString("G", new CultureInfo("en-US", false).NumberFormat);
+        }
+
+        @@keyframes progress {
+            from {
+                stroke-dashoffset: @ratingDashArray.ToString("G", new CultureInfo("en-US", false).NumberFormat);
+            }
+            to {
+                stroke-dashoffset: @ratingOffset.ToString("G", new CultureInfo("en-US", false).NumberFormat);
+            }
+        }
     </style>
 }
 <div id="banner-wrapper">
-    <div id="banner">
-        
-    </div>
+    <div id="banner"></div>
     <div id="title-wrapper">
         <div id="game-title" class="col-sm-offset-1">
             <h1>@Model.Name</h1>
@@ -51,6 +79,12 @@
         </div>
     </div>
     <div id="game-info">
-
+        <div id="game-rating">
+            <svg class="progress-circle" width="@ratingDiameter" height="@ratingDiameter" viewBox="0 0 @ratingDiameter @ratingDiameter">
+                <circle cx="@ratingRadius" cy="@ratingRadius" r="@(ratingRadius - ratingStrokeWidth)" fill="none" stroke="#e6e6e6" stroke-width="@ratingStrokeWidth" />
+                <circle class="progress-circle-value" cx="@ratingRadius" cy="@ratingRadius" r="@(ratingRadius - ratingStrokeWidth)" fill="none" stroke="@ratingColor" stroke-width="@ratingStrokeWidth" />
+            </svg>
+            <h1>@((int) Model.Rating)</h1>
+        </div>
     </div>
 </div>

@@ -40,8 +40,9 @@ namespace GameFeed.Domain.ObjectMappers {
                 Id = apiGame.ID,
                 Name = apiGame.Name,
                 Cover = cover,
-                Genres = apiGame.Genres.ToArray(),
                 FirstReleaseDate = unixEpoch.AddMilliseconds(apiGame.FirstReleaseDate),
+                Rating = apiGame.AggregatedRating,
+                Genres = apiGame.Genres.ToArray(),
                 Screenshots = screenshots,
                 Summary = apiGame.Summary,
                 GamePlatforms = gamePlatforms
