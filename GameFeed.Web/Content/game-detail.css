@@ -28,15 +28,21 @@
   text-shadow: 1px 1px 2px darkslategrey;
 }
 #banner-wrapper #title-wrapper #game-title h1,
-#banner-wrapper #title-wrapper #game-title h2 {
+#banner-wrapper #title-wrapper #game-title h2,
+#banner-wrapper #title-wrapper #game-title h3 {
   margin: 5px 0;
 }
 #banner-wrapper #title-wrapper #game-title h1 {
   font-size: 52px;
 }
-#banner-wrapper #title-wrapper #game-title h2 {
+#banner-wrapper #title-wrapper #game-title h2,
+#banner-wrapper #title-wrapper #game-title h3 {
   color: rgba(255, 255, 255, 0.9);
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+#banner-wrapper #title-wrapper #game-title h3 {
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 400;
 }
 #game-content {
   width: 100%;
@@ -61,11 +67,9 @@
   padding: 20px;
 }
 #game-content #game-feed #game-summary b {
+  display: inline-block;
   border-bottom: 1px solid;
   border-bottom-color: #cbcbcb;
-  font-family: Montserrat, sans-serif;
-  font-weight: 700;
-  display: inline-block;
 }
 #game-content #game-feed #summary-text {
   border-top: 1px solid;
@@ -95,4 +99,19 @@
   left: 50%;
   transform: translate(-50%, -100%);
   color: #4d4d4d;
+}
+#game-content #game-info #info {
+  margin-top: -60px;
+}
+#game-content #game-info #info h4 {
+  font-weight: 400;
+  border-bottom: 1px solid;
+  border-bottom-color: #cbcbcb;
+  font-family: 'Raleway', sans-serif;
+}
+#game-content #game-info #info #release-dates {
+  width: 100%;
+}
+#game-content #game-info #info #release-dates tbody tr td:nth-child(2) {
+  text-align: right;
 }

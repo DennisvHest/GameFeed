@@ -1,7 +1,7 @@
 ﻿@using System.Globalization
 @using GameFeed.Common
+@using GameFeed.Domain.Entities
 @using GameFeed.Services.ViewModels
-@using Newtonsoft.Json
 
 @model GameDetailViewModel
 
@@ -13,13 +13,13 @@
     const int ratingStrokeWidth = 12;
     const int ratingRadius = ratingDiameter / 2;
     const int ratingRadiusMinusBorder = ratingRadius - ratingStrokeWidth;
-    const float ratingDashArray = (float) (2 * Math.PI * ratingRadiusMinusBorder);
+    const float ratingDashArray = (float)(2 * Math.PI * ratingRadiusMinusBorder);
     float ratingInverse = 1f - Model.Rating / 100f;
     float ratingOffset = ratingDashArray * ratingInverse;
 
     //Map rating to color
-    int red = (int) (100f - Model.Rating ).Map(0, 100, 0, 255);
-    int green = (int) Model.Rating.Map(0, 100, 0, 255);
+    int red = (int)(100f - Model.Rating).Map(0, 100, 0, 255);
+    int green = (int)Model.Rating.Map(0, 100, 0, 255);
     string ratingColor = $"rgb({red},{green},0)";
 }
 
@@ -52,25 +52,26 @@
         <div id="game-title" class="col-sm-offset-1">
             <h1>@Model.Name</h1>
             <h2>@Model.FirstReleaseDate</h2>
+            <h3>@Model.Developers.FirstOrDefault()</h3>
         </div>
     </div>
 </div>
 <div id="game-content">
     <div id="game-cover" class="col-sm-offset-1">
-        <img src="@Model.Cover"/>
+        <img src="@Model.Cover" />
     </div>
     <div id="game-feed">
         <div id="game-summary">
-            <b class="m-b-5">Genres</b>
+            <b class="text-label m-b-5">Genres</b>
             <div class="tag-area">
                 @foreach (string genreName in Model.Genres) {
                     <button class="tag"><i class="fa fa-tag" aria-hidden="true"></i>@genreName</button>
                 }
             </div>
-            <b class="m-v-5">Platforms</b>
+            <b class="text-label m-v-5">Platforms</b>
             <div class="tag-area m-b-10">
-                @foreach (string platformName in Model.Platforms) {
-                    <button class="tag"><i class="fa fa-gamepad" aria-hidden="true"></i>@platformName</button>
+                @foreach (GamePlatform gamePlatform in Model.Platforms) {
+                    <button class="tag"><i class="fa fa-gamepad" aria-hidden="true"></i>@gamePlatform.Platform.Name</button>
                 }
             </div>
             <div id="summary-text" class="p-t-10">
@@ -84,7 +85,20 @@
                 <circle cx="@ratingRadius" cy="@ratingRadius" r="@(ratingRadius - ratingStrokeWidth)" fill="none" stroke="#e6e6e6" stroke-width="@ratingStrokeWidth" />
                 <circle class="progress-circle-value" cx="@ratingRadius" cy="@ratingRadius" r="@(ratingRadius - ratingStrokeWidth)" fill="none" stroke="@ratingColor" stroke-width="@ratingStrokeWidth" />
             </svg>
-            <h1>@((int) Model.Rating)</h1>
+            <h1>@((int)Model.Rating)</h1>
+        </div>
+        <div id="info">
+            <h4 class="p-b-5 m-b-5">Release dates</h4>
+            <table id="release-dates">
+                <tbody>
+                    @foreach (GamePlatform gamePlatform in Model.Platforms) {
+                        <tr>
+                            <td class="text-label">@gamePlatform.Platform.Name</td>
+                            <td>@gamePlatform.ReleaseDate.ToShortDateString()</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

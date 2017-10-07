@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using GameFeed.Domain.Entities;
 
 namespace GameFeed.Services.ViewModels {
 
@@ -9,8 +10,10 @@ namespace GameFeed.Services.ViewModels {
         public string FirstReleaseDate { get; set; }
         public float Rating { get; set; }
         public IEnumerable<string> Genres { get; set; }
-        public IEnumerable<string> Platforms { get; set; }
+        public IEnumerable<GamePlatform> Platforms { get; set; }
         public IEnumerable<string> Screenshots { get; set; }
+        public IEnumerable<string> Developers { get; set; }
+        public IEnumerable<string> Publishers { get; set; }
         public string Cover { get; set; }
     }
 }

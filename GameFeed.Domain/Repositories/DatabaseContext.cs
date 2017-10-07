@@ -9,5 +9,6 @@ namespace GameFeed.Domain.Concrete {
         public DbSet<Genre> Genres { get; set; }
         public DbSet<Image> Images { get; set; }
         public DbSet<Platform> Platforms { get; set; }
+        public DbSet<Company> Companies { get; set; }
     }
 }

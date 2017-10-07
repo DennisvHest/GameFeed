@@ -108,6 +108,10 @@ h6 {
 .p-l-10 {
   padding-left: 10px;
 }
+.text-label {
+  font-family: Montserrat, sans-serif;
+  font-weight: 700;
+}
 .tag {
   background-color: #e4e4e4;
   border: none;

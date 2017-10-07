@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using GameFeed.Common.Enums;
 using GameFeed.Domain.ApiRepositories;
 using GameFeed.Domain.Entities;
 using GameFeed.Domain.Repositories;
@@ -47,18 +48,18 @@ namespace GameFeed.Services {
                 gameRepository.Insert(game);
             }
 
-            GameDetailViewModel viewModel = new GameDetailViewModel() {
+            return new GameDetailViewModel() {
                 Name = game.Name,
                 Cover = game.Cover.URL,
                 FirstReleaseDate = game.FirstReleaseDate.ToShortDateString(),
                 Rating = game.Rating,
                 Genres = game.Genres.Select(g => g.Name),
-                Platforms = game.GamePlatforms.Select(x => x.Platform.Name),
+                Platforms = game.GamePlatforms,
+                Developers = game.GameCompanies.Where(c => c.Role == CompanyRole.Developer).Select(c => c.Company.Name),
+                Publishers = game.GameCompanies.Where(c => c.Role == CompanyRole.Publisher).Select(c => c.Company.Name),
                 Screenshots = game.Screenshots.Select(s => s.URL),
                 Summary = game.Summary
             };
-
-            return viewModel;
         }
     }
 }

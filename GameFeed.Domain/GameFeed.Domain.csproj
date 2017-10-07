@@ -62,16 +62,14 @@
     <Compile Include="ApiRepositories\ApiClient.cs" />
     <Compile Include="ApiRepositories\GameApiRepository.cs" />
     <Compile Include="ApiRepositories\PlatformApiRepository.cs" />
+    <Compile Include="Entities\Company.cs" />
+    <Compile Include="Entities\GameCompany.cs" />
     <Compile Include="Entities\GamePlatform.cs" />
     <Compile Include="Entities\Genre.cs" />
     <Compile Include="Entities\Platform.cs" />
-    <Compile Include="Migrations\201710042039187_Initial.cs" />
-    <Compile Include="Migrations\201710042039187_Initial.Designer.cs">
-      <DependentUpon>201710042039187_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710061715310_Rating added.cs" />
-    <Compile Include="Migrations\201710061715310_Rating added.Designer.cs">
-      <DependentUpon>201710061715310_Rating added.cs</DependentUpon>
+    <Compile Include="Migrations\201710071732465_Initial.cs" />
+    <Compile Include="Migrations\201710071732465_Initial.Designer.cs">
+      <DependentUpon>201710071732465_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="ObjectMappers\ApiGameMapper.cs" />
     <Compile Include="Repositories\GameRepository.cs" />
@@ -92,11 +90,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201710042039187_Initial.resx">
-      <DependentUpon>201710042039187_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710061715310_Rating added.resx">
-      <DependentUpon>201710061715310_Rating added.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201710071732465_Initial.resx">
+      <DependentUpon>201710071732465_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

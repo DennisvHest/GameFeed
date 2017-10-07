@@ -22,7 +22,7 @@ namespace GameFeed.Domain.ApiRepositories {
         }
 
         public Game GetGame(int id) {
-            ApiGame apiGame = _apiClient.Get<ApiGame>($"games/{id}?fields=id,name,summary,first_release_date,screenshots.url,cover.url,release_dates.platform,release_dates.date,aggregated_rating&expand=game,genres");
+            ApiGame apiGame = _apiClient.Get<ApiGame>($"games/{id}?fields=id,name,summary,first_release_date,screenshots.url,cover.url,release_dates,release_dates,aggregated_rating&expand=game,genres,developers,publishers");
 
             //Get the platforms this game is on
             apiGame.GamePlatforms = apiGame.GamePlatforms

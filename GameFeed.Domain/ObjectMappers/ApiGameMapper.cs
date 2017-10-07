@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using GameFeed.Common;
+using GameFeed.Common.Enums;
 using GameFeed.Domain.ApiEntities;
 using GameFeed.Domain.Entities;
 
@@ -12,7 +13,7 @@ namespace GameFeed.Domain.ObjectMappers {
             DateTime unixEpoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
             //Screenshots
-            List<Image> screenshots = new List<Image>();
+            IList<Image> screenshots = new List<Image>();
 
             foreach (Image screenshot in apiGame.Screenshots) {
                 screenshots.Add(new Image() {
@@ -26,13 +27,33 @@ namespace GameFeed.Domain.ObjectMappers {
             } : null;
 
             //Platforms
-            List<GamePlatform> gamePlatforms = new List<GamePlatform>();
+            IList<GamePlatform> gamePlatforms = new List<GamePlatform>();
             foreach (ApiGamePlatform gamePlatform in apiGame.GamePlatforms) {
                 gamePlatforms.Add(new GamePlatform() {
                     GameId = apiGame.ID,
                     PlatformId = gamePlatform.PlatformId,
                     Platform = apiGame.Platforms.FirstOrDefault(p => p.Id == gamePlatform.PlatformId),
                     ReleaseDate = unixEpoch.AddMilliseconds(gamePlatform.ReleaseDate)
+                });
+            }
+
+            //Companies
+            IList<GameCompany> gameCompanies = new List<GameCompany>();
+            foreach (Company company in apiGame.Developers) {
+                gameCompanies.Add(new GameCompany() {
+                    GameId = apiGame.ID,
+                    CompanyId = company.Id,
+                    Company = company,
+                    Role = CompanyRole.Developer
+                });
+            }
+
+            foreach (Company company in apiGame.Publishers) {
+                gameCompanies.Add(new GameCompany() {
+                    GameId = apiGame.ID,
+                    CompanyId = company.Id,
+                    Company = company,
+                    Role = CompanyRole.Publisher
                 });
             }
 
@@ -45,7 +66,8 @@ namespace GameFeed.Domain.ObjectMappers {
                 Genres = apiGame.Genres.ToArray(),
                 Screenshots = screenshots,
                 Summary = apiGame.Summary,
-                GamePlatforms = gamePlatforms
+                GamePlatforms = gamePlatforms,
+                GameCompanies = gameCompanies
             };
         }
     }

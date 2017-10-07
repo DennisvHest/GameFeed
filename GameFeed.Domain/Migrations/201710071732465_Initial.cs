@@ -8,6 +8,29 @@ namespace GameFeed.Domain.Migrations
         public override void Up()
         {
             CreateTable(
+                "dbo.Companies",
+                c => new
+                    {
+                        Id = c.Int(nullable: false),
+                        Name = c.String(),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.GameCompanies",
+                c => new
+                    {
+                        GameId = c.Int(nullable: false),
+                        CompanyId = c.Int(nullable: false),
+                        Role = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => new { t.GameId, t.CompanyId })
+                .ForeignKey("dbo.Companies", t => t.CompanyId, cascadeDelete: true)
+                .ForeignKey("dbo.Games", t => t.GameId, cascadeDelete: true)
+                .Index(t => t.GameId)
+                .Index(t => t.CompanyId);
+            
+            CreateTable(
                 "dbo.Games",
                 c => new
                     {
@@ -15,6 +38,7 @@ namespace GameFeed.Domain.Migrations
                         Name = c.String(),
                         Summary = c.String(),
                         FirstReleaseDate = c.DateTime(nullable: false),
+                        Rating = c.Single(nullable: false),
                         Cover_ID = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
@@ -82,24 +106,30 @@ namespace GameFeed.Domain.Migrations
         
         public override void Down()
         {
+            DropForeignKey("dbo.GameCompanies", "GameId", "dbo.Games");
             DropForeignKey("dbo.Images", "Game_Id", "dbo.Games");
             DropForeignKey("dbo.GenreGames", "Game_Id", "dbo.Games");
             DropForeignKey("dbo.GenreGames", "Genre_Id", "dbo.Genres");
             DropForeignKey("dbo.GamePlatforms", "PlatformId", "dbo.Platforms");
             DropForeignKey("dbo.GamePlatforms", "GameId", "dbo.Games");
             DropForeignKey("dbo.Games", "Cover_ID", "dbo.Images");
+            DropForeignKey("dbo.GameCompanies", "CompanyId", "dbo.Companies");
             DropIndex("dbo.GenreGames", new[] { "Game_Id" });
             DropIndex("dbo.GenreGames", new[] { "Genre_Id" });
             DropIndex("dbo.GamePlatforms", new[] { "PlatformId" });
             DropIndex("dbo.GamePlatforms", new[] { "GameId" });
             DropIndex("dbo.Images", new[] { "Game_Id" });
             DropIndex("dbo.Games", new[] { "Cover_ID" });
+            DropIndex("dbo.GameCompanies", new[] { "CompanyId" });
+            DropIndex("dbo.GameCompanies", new[] { "GameId" });
             DropTable("dbo.GenreGames");
             DropTable("dbo.Genres");
             DropTable("dbo.Platforms");
             DropTable("dbo.GamePlatforms");
             DropTable("dbo.Images");
             DropTable("dbo.Games");
+            DropTable("dbo.GameCompanies");
+            DropTable("dbo.Companies");
         }
     }
 }
