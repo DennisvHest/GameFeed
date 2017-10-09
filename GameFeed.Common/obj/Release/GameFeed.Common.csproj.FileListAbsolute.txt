@@ -1,4 +1,0 @@
-C:\dev\GameFeed\GameFeed.Common\bin\Release\GameFeed.Common.dll
-C:\dev\GameFeed\GameFeed.Common\bin\Release\GameFeed.Common.pdb
-C:\dev\GameFeed\GameFeed.Common\obj\Release\GameFeed.Common.dll
-C:\dev\GameFeed\GameFeed.Common\obj\Release\GameFeed.Common.pdb
