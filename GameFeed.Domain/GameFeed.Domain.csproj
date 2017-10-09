@@ -71,6 +71,10 @@
     <Compile Include="Migrations\201710071732465_Initial.Designer.cs">
       <DependentUpon>201710071732465_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710091839246_GameCompany Role as PK.cs" />
+    <Compile Include="Migrations\201710091839246_GameCompany Role as PK.Designer.cs">
+      <DependentUpon>201710091839246_GameCompany Role as PK.cs</DependentUpon>
+    </Compile>
     <Compile Include="ObjectMappers\ApiGameMapper.cs" />
     <Compile Include="Repositories\GameRepository.cs" />
     <Compile Include="Repositories\DatabaseContext.cs" />
@@ -92,6 +96,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201710071732465_Initial.resx">
       <DependentUpon>201710071732465_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710091839246_GameCompany Role as PK.resx">
+      <DependentUpon>201710091839246_GameCompany Role as PK.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

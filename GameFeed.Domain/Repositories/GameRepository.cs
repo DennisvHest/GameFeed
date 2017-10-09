@@ -57,6 +57,17 @@ namespace GameFeed.Domain.Repositories {
                 }
             }
 
+            //Don't add already existing platforms into the database
+            IList<GameCompany> existingGameCompanies = context.GameCompanies.ToList();
+
+            foreach (GameCompany gameCompany in game.GameCompanies) {
+                if (existingGameCompanies.Any(x => x.Company.Id == gameCompany.Company.Id)) {
+                    gameCompany.Company = null;
+                } else {
+                    existingGameCompanies.Add(gameCompany);
+                }
+            }
+
             context.Games.Add(game);
             context.SaveChanges();
         }

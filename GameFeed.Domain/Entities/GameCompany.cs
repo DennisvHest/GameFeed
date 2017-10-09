@@ -12,6 +12,7 @@ namespace GameFeed.Domain.Entities {
         [Key, Column(Order = 1)]
         public int CompanyId { get; set; }
 
+        [Key, Column(Order = 2)]
         public CompanyRole Role { get; set; }
 
         public virtual Game Game { get; set; }
