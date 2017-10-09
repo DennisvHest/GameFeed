@@ -9,6 +9,11 @@ using GameFeed.Domain.Entities;
 namespace GameFeed.Domain.ObjectMappers {
     public static class ApiGameMapper {
 
+        /// <summary>
+        /// Maps an ApiGame to a Game (Entity) object
+        /// </summary>
+        /// <param name="apiGame">ApiGame to be mapped</param>
+        /// <returns>Game object</returns>
         public static Game MapGame(ApiGame apiGame) {
             DateTime unixEpoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
