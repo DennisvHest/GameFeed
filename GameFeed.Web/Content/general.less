@@ -15,6 +15,52 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
 }
 
+button {
+    background-color: @highlight;
+    border: none;
+    color: white;
+    height: 32px;
+    outline: none;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: lighten(@highlight, 5%);
+}
+
+button:active {
+    background-color: darken(@highlight, 5%);
+}
+
+.button-subtle {
+    background-color: transparent;
+    border: 1px solid;
+    border-color: darken(@background, 20%);
+    color: darken(@background, 60%);
+}
+
+.button-subtle:hover {
+    background-color: transparent;
+    border-color: black;
+    color: black;
+}
+
+.button-subtle:active {
+    background-color: darken(@background, 10%);
+    border-color: darken(@background, 10%);
+}
+
+input[type="text"], input[type="password"] {
+    background-color: transparent;
+    border-width: 0 0 1px 0;
+    outline: none;
+    height: 32px;
+    padding: 5px;
+    background-color: darken(@background, 2%);
+    border-color: darken(@background, 20%);
+    color: darken(@background, 80%);
+}
+
 /* Margin */
 .m-0 {
     margin: 0px;

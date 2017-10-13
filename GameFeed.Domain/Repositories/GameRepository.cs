@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using GameFeed.Domain.Concrete;
+using GameFeed.Domain.Repositories;
 using GameFeed.Domain.Entities;
 
 namespace GameFeed.Domain.Repositories {
@@ -40,36 +40,44 @@ namespace GameFeed.Domain.Repositories {
         /// <param name="game">Game to be inserted into the database</param>
         public void Insert(Game game) {
             //Don't add already existing entries into the database
+            AttachExistingGenres(game.Genres);
+            AttachExistingPlatforms(game.GamePlatforms.Select(x => x.Platform));
+            AddNotAlreadyExistingCompanies(game.GameCompanies);
+
+            context.Games.Add(game);
+            context.SaveChanges();
+        }
+
+        private void AttachExistingGenres(IEnumerable<Genre> genres) {
             DbSet<Genre> existingGenres = context.Genres;
 
-            foreach (Genre genre in game.Genres) {
+            foreach (Genre genre in genres) {
                 if (existingGenres.Any(g => g.Id == genre.Id)) {
                     context.Genres.Attach(genre);
                 }
             }
+        }
 
-            //Don't add already existing platforms into the database
+        private void AttachExistingPlatforms(IEnumerable<Platform> platforms) {
             DbSet<Platform> existingPlatforms = context.Platforms;
 
-            foreach (Platform platform in game.GamePlatforms.Select(x => x.Platform)) {
+            foreach (Platform platform in platforms) {
                 if (existingPlatforms.Any(p => p.Id == platform.Id)) {
                     context.Platforms.Attach(platform);
                 }
             }
+        }
 
-            //Don't add already existing platforms into the database
+        private void AddNotAlreadyExistingCompanies(IEnumerable<GameCompany> gameCompanies) {
             IList<GameCompany> existingGameCompanies = context.GameCompanies.ToList();
 
-            foreach (GameCompany gameCompany in game.GameCompanies) {
+            foreach (GameCompany gameCompany in gameCompanies) {
                 if (existingGameCompanies.Any(x => x.Company.Id == gameCompany.Company.Id)) {
                     gameCompany.Company = null;
                 } else {
                     existingGameCompanies.Add(gameCompany);
                 }
             }
-
-            context.Games.Add(game);
-            context.SaveChanges();
         }
     }
 }

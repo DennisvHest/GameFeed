@@ -29,9 +29,55 @@
         }
     }
 
-    h1, h2, h3, h4, h5, h6 {
+    h1, h2, h3, h4, h5, h6, p, i {
         color: white;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
         margin: 0;
+    }
+
+    #side-nav-content {
+        padding: 10px;
+
+        #login {
+            padding: 10px;
+            background-color: darken(@base, 5%);
+
+            .button-subtle {
+                border-color: darken(white, 10%);
+                color: darken(white, 10%);
+            }
+
+            .button-subtle:hover, input[type="text"]:hover, input[type="text"]:focus,
+            input[type="password"]:hover, input[type="password"]:focus {
+                border-color: white;
+                color: white;
+            }
+
+            .button-subtle:active {
+                background-color: white;
+                color: black;
+            }
+
+            input[type="text"], input[type="password"] {
+                background-color: transparent;
+                border-color: darken(white, 10%);
+            }
+
+            i {
+                font-size: 20px;
+                padding: 6px 14px;
+            }
+
+            p {
+                text-align: center;
+                padding: 10px 0;
+                border-top: 1px solid;
+                border-color: darken(white, 10%);
+                margin: 0px;
+            }
+        }
     }
 }
 

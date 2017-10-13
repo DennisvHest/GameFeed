@@ -1,0 +1,13 @@
+﻿@using GameFeed.Web.Models
+
+@model LoginModel
+
+<div id="login">
+    <i class="fa fa-user-circle col-xs-2" aria-hidden="true"></i>
+    @Html.TextBoxFor(m => m.Username, new { @class = "col-xs-10" })
+    <i class="fa fa-lock col-xs-2" aria-hidden="true"></i>
+    @Html.TextBoxFor(m => m.Password, new { @class = "col-xs-10", type = "password" })
+    <button class="col-xs-12 m-v-10">Login</button>
+    <p>Don't have an account?</p>
+    <button class="col-xs-12 button-subtle">Register</button>
+</div>

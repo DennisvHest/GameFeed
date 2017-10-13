@@ -16,6 +16,46 @@ h6 {
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
 }
+button {
+  background-color: #008060;
+  border: none;
+  color: white;
+  height: 32px;
+  outline: none;
+  font-weight: bold;
+}
+button:hover {
+  background-color: #009a73;
+}
+button:active {
+  background-color: #00674d;
+}
+.button-subtle {
+  background-color: transparent;
+  border: 1px solid;
+  border-color: #bebebe;
+  color: #585858;
+}
+.button-subtle:hover {
+  background-color: transparent;
+  border-color: black;
+  color: black;
+}
+.button-subtle:active {
+  background-color: #d8d8d8;
+  border-color: #d8d8d8;
+}
+input[type="text"],
+input[type="password"] {
+  background-color: transparent;
+  border-width: 0 0 1px 0;
+  outline: none;
+  height: 32px;
+  padding: 5px;
+  background-color: #ececec;
+  border-color: #bebebe;
+  color: #252525;
+}
 /* Margin */
 .m-0 {
   margin: 0px;

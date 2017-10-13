@@ -7,13 +7,13 @@ namespace GameFeed.Domain.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class GameCompanyRoleasPK : IMigrationMetadata
+    public sealed partial class Initial : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(GameCompanyRoleasPK));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Initial));
         
         string IMigrationMetadata.Id
         {
-            get { return "201710091839246_GameCompany Role as PK"; }
+            get { return "201710131802109_Initial"; }
         }
         
         string IMigrationMetadata.Source

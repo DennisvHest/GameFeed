@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using GameFeed.Domain.ApiRepositories;
-using GameFeed.Domain.Concrete;
 using GameFeed.Domain.Repositories;
 using GameFeed.Services;
 using Ninject;
