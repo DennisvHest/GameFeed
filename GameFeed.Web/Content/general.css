@@ -17,18 +17,18 @@ h6 {
   font-weight: 700;
 }
 button {
-  background-color: #008060;
+  background-color: #3d4c70;
   border: none;
   color: white;
-  height: 32px;
+  height: 40px;
   outline: none;
   font-weight: bold;
 }
 button:hover {
-  background-color: #009a73;
+  background-color: #465881;
 }
 button:active {
-  background-color: #00674d;
+  background-color: #344160;
 }
 .button-subtle {
   background-color: transparent;
@@ -50,7 +50,7 @@ input[type="password"] {
   background-color: transparent;
   border-width: 0 0 1px 0;
   outline: none;
-  height: 32px;
+  height: 40px;
   padding: 5px;
   background-color: #ececec;
   border-color: #bebebe;
@@ -159,6 +159,8 @@ input[type="password"] {
   padding: 8px;
   border-radius: 5px;
   outline: none;
+  color: #333;
+  font-weight: normal;
 }
 .tag i {
   color: grey;

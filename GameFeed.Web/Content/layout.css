@@ -19,7 +19,11 @@
   border-bottom: 1px solid #e6e6e6;
 }
 #side-nav #logo h1 {
-  font-size: 40px;
+  font-size: 34px;
+}
+#side-nav #logo h1 i {
+  font-size: 42px;
+  margin: 0px 10px;
 }
 #side-nav #logo h1 span {
   font-weight: 400;
@@ -47,7 +51,7 @@
 }
 #side-nav #side-nav-content #login {
   padding: 10px;
-  background-color: #1b2232;
+  text-align: center;
 }
 #side-nav #side-nav-content #login .button-subtle {
   border-color: #e6e6e6;
@@ -65,21 +69,36 @@
   background-color: white;
   color: black;
 }
+#side-nav #side-nav-content #login .textbox {
+  height: 100%;
+  display: flow-root;
+}
 #side-nav #side-nav-content #login input[type="text"],
 #side-nav #side-nav-content #login input[type="password"] {
-  background-color: transparent;
-  border-color: #e6e6e6;
+  border: none;
+  color: #e6e6e6;
+  background-color: #242d42;
 }
 #side-nav #side-nav-content #login i {
-  font-size: 20px;
-  padding: 6px 14px;
+  font-size: 22px;
+  padding: 9px 12px;
+  background-color: #313d59;
 }
 #side-nav #side-nav-content #login p {
-  text-align: center;
   padding: 10px 0;
   border-top: 1px solid;
   border-color: #e6e6e6;
   margin: 0px;
+}
+#side-nav #side-nav-content #login label {
+  color: #ddb43c;
+  margin-bottom: 0px;
+  margin-top: 10px;
+  font-weight: normal;
+  font-size: 12px;
+}
+#side-nav #side-nav-content #login .text-warning {
+  color: #ddb43c;
 }
 /* Content */
 #content {

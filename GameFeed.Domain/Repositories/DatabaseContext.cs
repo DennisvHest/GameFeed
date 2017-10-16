@@ -26,5 +26,9 @@ namespace GameFeed.Domain.Repositories {
             modelBuilder.Entity<IdentityUserClaim>().ToTable("UserClaims");
             modelBuilder.Entity<IdentityRole>().ToTable("Roles");
         }
+
+        public static DatabaseContext Create() {
+            return new DatabaseContext();
+        }
     }
 }

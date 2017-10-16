@@ -21,7 +21,12 @@
         border-bottom: 1px solid darken(white, 10%);
 
         h1 {
-            font-size: 40px;
+            font-size: 34px;
+
+            i {
+                font-size: 42px;
+                margin: 0px 10px;
+            }
 
             span {
                 font-weight: 400;
@@ -42,7 +47,7 @@
 
         #login {
             padding: 10px;
-            background-color: darken(@base, 5%);
+            text-align: center;
 
             .button-subtle {
                 border-color: darken(white, 10%);
@@ -60,22 +65,40 @@
                 color: black;
             }
 
+            .textbox {
+                height: 100%;
+                display: flow-root;
+            }
+
             input[type="text"], input[type="password"] {
-                background-color: transparent;
-                border-color: darken(white, 10%);
+                border: none;
+                color: darken(white, 10%);
+                background-color: @base;
             }
 
             i {
-                font-size: 20px;
-                padding: 6px 14px;
+                font-size: 22px;
+                padding: 9px 12px;
+                background-color: lighten(@base, 7%);
             }
 
             p {
-                text-align: center;
                 padding: 10px 0;
                 border-top: 1px solid;
                 border-color: darken(white, 10%);
                 margin: 0px;
+            }
+
+            label {
+                color: #ddb43c;
+                margin-bottom: 0px;
+                margin-top: 10px;
+                font-weight: normal;
+                font-size: 12px;
+            }
+
+            .text-warning {
+                color: #ddb43c;
             }
         }
     }

@@ -3,11 +3,26 @@
 @model LoginModel
 
 <div id="login">
-    <i class="fa fa-user-circle col-xs-2" aria-hidden="true"></i>
-    @Html.TextBoxFor(m => m.Username, new { @class = "col-xs-10" })
-    <i class="fa fa-lock col-xs-2" aria-hidden="true"></i>
-    @Html.TextBoxFor(m => m.Password, new { @class = "col-xs-10", type = "password" })
-    <button class="col-xs-12 m-v-10">Login</button>
+    @using (Html.BeginForm("Login", "Account", new { returnUrl = Request.RawUrl }, FormMethod.Post, new { @class = "p-b-10", id = "login-form" })) {
+
+        @Html.AntiForgeryToken()
+
+        <div class="textbox m-b-10">
+            <i class="fa fa-user-circle col-xs-2" aria-hidden="true"></i>
+            @Html.TextBoxFor(m => m.Username, new {@class = "col-xs-10", required = "true"})
+        </div>
+
+        <div class="textbox">
+            <i class="fa fa-lock col-xs-2" aria-hidden="true"></i>
+            @Html.TextBoxFor(m => m.Password, new {@class = "col-xs-10", type = "password", required = "true" })
+        </div>
+
+        <button type="submit" class="col-xs-12 m-v-10">Login</button>
+
+        if (TempData["signin-success"] != null) {
+            <b class="text-warning text-center m-b-5">Invalid login. Please try again.</b>
+        }
+    }
     <p>Don't have an account?</p>
     <button class="col-xs-12 button-subtle">Register</button>
 </div>

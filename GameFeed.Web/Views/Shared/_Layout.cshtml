@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using GameFeed.Web.Models
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -19,19 +20,23 @@
 <body>
     <nav id="side-nav">
         <div id="logo">
-            <h1>GAME<span>FEED</span></h1>
+            <h1><i class="fa fa-gamepad" aria-hidden="true"></i>GAME<span>FEED</span></h1>
         </div>
         <div id="side-nav-content">
-            @Html.Partial("_Login")
+            @if (!User.Identity.IsAuthenticated) {
+                @Html.Partial("_Login", new LoginModel())
+            }
         </div>
     </nav>
     <section id="content">
-        <input type="text" />
         @RenderBody()
     </section>
 
     <!-- Javascript -->
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
+    <script>$("#login-form").validate();</script>
+    @RenderSection("Scripts", false)
 </body>
 </html>
