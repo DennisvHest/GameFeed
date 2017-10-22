@@ -1,4 +1,4 @@
-﻿namespace GameFeed.Common {
+﻿namespace GameFeed.Common.Extensions {
 
     public static class FloatExtensions {
 

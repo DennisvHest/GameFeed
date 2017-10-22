@@ -1,0 +1,22 @@
+﻿@using GameFeed.Web.Models
+@model ErrorModel
+
+@{
+    string title = string.Empty;
+    string body = string.Empty;
+
+    if (Model.HttpStatusCode == HttpStatusCode.NotFound) {
+        title = "Page not found!";
+        body = "We couldn't find what you were looking for. Either it doen't exist or it's temporarily unavailable.";
+    } else if (Model.HttpStatusCode == HttpStatusCode.InternalServerError) {
+        title = "Something went wrong!";
+        body = "Something went wrong on our end. Sorry!";
+    }
+
+    ViewBag.Title = title;
+}
+
+<div id="error">
+    <h1><i class="fa fa-exclamation" aria-hidden="true"></i> @((int)Model.HttpStatusCode)</h1>
+    <p>@body</p>
+</div>

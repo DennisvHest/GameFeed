@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using GameFeed.Common;
 using GameFeed.Common.Enums;
+using GameFeed.Common.Helpers;
 using GameFeed.Domain.ApiEntities;
 using GameFeed.Domain.Entities;
 

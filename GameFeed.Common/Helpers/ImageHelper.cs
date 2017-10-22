@@ -1,4 +1,5 @@
-﻿namespace GameFeed.Common {
+﻿namespace GameFeed.Common.Helpers {
+
     public static class ImageHelper {
 
         public static string GetFullSizedImageUrl(string url) {

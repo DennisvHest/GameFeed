@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using GameFeed.Common.Exceptions;
 using GameFeed.Domain.ApiEntities;
 using GameFeed.Domain.Entities;
 using GameFeed.Domain.ObjectMappers;
@@ -23,6 +24,10 @@ namespace GameFeed.Domain.ApiRepositories {
 
         public Game GetGame(int id) {
             ApiGame apiGame = _apiClient.Get<ApiGame>($"games/{id}?fields=id,name,summary,first_release_date,screenshots.url,cover.url,release_dates,release_dates,aggregated_rating&expand=game,genres,developers,publishers");
+
+            //If the game does not exist, throw an exception
+            if (apiGame == null)
+                throw new GameDoesNotExistException();
 
             //Get the platforms this game is on
             apiGame.GamePlatforms = apiGame.GamePlatforms

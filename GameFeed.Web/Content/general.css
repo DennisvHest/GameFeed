@@ -2,6 +2,10 @@
     General-purpose styling 
 */
 /* Colors */
+html,
+body {
+  height: 100%;
+}
 body {
   font-family: 'Raleway', sans-serif;
   background-color: #f1f1f1;
@@ -178,4 +182,29 @@ input:-webkit-autofill:active {
 }
 .tag:active {
   background-color: #cbcbcb;
+}
+#error {
+  width: 540px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-left: 150px;
+}
+#error h1 {
+  font-size: 160px;
+  margin: 0px;
+  background-color: #d8d8d8;
+}
+#error h1 i {
+  background-color: #3d4c70;
+  color: white;
+  width: 170px;
+  text-align: center;
+  padding: 8px;
+}
+#error p {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 16px;
 }

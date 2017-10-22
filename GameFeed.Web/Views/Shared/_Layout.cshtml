@@ -21,7 +21,7 @@
 <body>
     <nav id="side-nav">
         <div id="logo">
-            <h1><i class="fa fa-gamepad" aria-hidden="true"></i>GAME<span>FEED</span></h1>
+            <a href="@Url.Action("Index", "Home")"><h1><i class="fa fa-gamepad" aria-hidden="true"></i>GAME<span>FEED</span></h1></a>
         </div>
         <div id="side-nav-content">
             @if (!User.Identity.IsAuthenticated) {

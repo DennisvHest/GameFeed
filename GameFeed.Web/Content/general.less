@@ -4,6 +4,10 @@
 
 @import "colors.less";
 
+html, body {
+    height: 100%;
+}
+
 body {
     font-family: 'Raleway', sans-serif;
     background-color: @background;
@@ -218,4 +222,33 @@ input:-webkit-autofill:active {
 
 .tag:active {
     background-color: darken(@background, 15%);
+}
+
+#error {
+    width: 540px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin-left: 150px;
+
+    h1 {
+        font-size: 160px;
+        margin: 0px;
+        background-color: darken(@background, 10%);
+
+        i {
+            background-color: #3d4c70;
+            color: white;
+            width: 170px;
+            text-align: center;
+            padding: 8px;
+        }
+    }
+
+    p {
+        margin-top: 10px;
+        text-align: center;
+        font-size: 16px;
+    }
 }
