@@ -21,7 +21,7 @@ namespace GameFeed.Web.Controllers {
             get {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set {
+            set {
                 _signInManager = value;
             }
         }
@@ -30,7 +30,7 @@ namespace GameFeed.Web.Controllers {
             get {
                 return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
             }
-            private set {
+            set {
                 _userManager = value;
             }
         }
@@ -53,6 +53,11 @@ namespace GameFeed.Web.Controllers {
             }
 
             return Redirect(returnUrl);
+        }
+
+        public ActionResult Logout() {
+            AuthenticationManager.SignOut();
+            return RedirectToAction("Index", "Home");
         }
     }
 }

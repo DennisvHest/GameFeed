@@ -15,6 +15,7 @@
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/general.css" rel="stylesheet" />
     <link href="~/Content/layout.css" rel="stylesheet" />
+    <link href="~/Content/ripple.min.css" rel="stylesheet" />
     @RenderSection("Css", false)
 </head>
 <body>
@@ -25,6 +26,9 @@
         <div id="side-nav-content">
             @if (!User.Identity.IsAuthenticated) {
                 @Html.Partial("_Login", new LoginModel())
+            }
+            else {
+                <a href="@Url.Action("Logout", "Account")"><button class="col-xs-12">Logout</button></a>
             }
         </div>
     </nav>

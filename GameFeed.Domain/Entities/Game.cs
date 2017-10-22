@@ -17,7 +17,7 @@ namespace GameFeed.Domain.Entities {
         public virtual ICollection<Genre> Genres { get; set; }
         public virtual ICollection<Image> Screenshots { get; set; }
         public virtual ICollection<GamePlatform> GamePlatforms { get; set; }
-
         public virtual ICollection<GameCompany> GameCompanies { get; set; }
+        public virtual ICollection<GameUser> GameUsers { get; set; }
     }
 }

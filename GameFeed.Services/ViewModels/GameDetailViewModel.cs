@@ -5,6 +5,7 @@ namespace GameFeed.Services.ViewModels {
 
     public class GameDetailViewModel {
 
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Summary { get; set; }
         public string FirstReleaseDate { get; set; }
@@ -15,5 +16,6 @@ namespace GameFeed.Services.ViewModels {
         public IEnumerable<string> Developers { get; set; }
         public IEnumerable<string> Publishers { get; set; }
         public string Cover { get; set; }
+        public bool CurrentUserIsFollowing { get; set; }
     }
 }

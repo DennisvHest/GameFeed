@@ -97,12 +97,13 @@
     <Compile Include="Entities\Company.cs" />
     <Compile Include="Entities\GameCompany.cs" />
     <Compile Include="Entities\GamePlatform.cs" />
+    <Compile Include="Entities\GameUser.cs" />
     <Compile Include="Entities\Genre.cs" />
     <Compile Include="Entities\Platform.cs" />
     <Compile Include="Entities\User.cs" />
-    <Compile Include="Migrations\201710131802109_Initial.cs" />
-    <Compile Include="Migrations\201710131802109_Initial.Designer.cs">
-      <DependentUpon>201710131802109_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201710172022276_initial.cs" />
+    <Compile Include="Migrations\201710172022276_initial.Designer.cs">
+      <DependentUpon>201710172022276_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="ObjectMappers\ApiGameMapper.cs" />
     <Compile Include="Repositories\GameRepository.cs" />
@@ -126,8 +127,8 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201710131802109_Initial.resx">
-      <DependentUpon>201710131802109_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201710172022276_initial.resx">
+      <DependentUpon>201710172022276_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

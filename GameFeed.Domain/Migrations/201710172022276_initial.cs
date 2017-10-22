@@ -3,7 +3,7 @@ namespace GameFeed.Domain.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Initial : DbMigration
+    public partial class initial : DbMigration
     {
         public override void Up()
         {
@@ -81,37 +81,18 @@ namespace GameFeed.Domain.Migrations
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
-                "dbo.Genres",
+                "dbo.GameUsers",
                 c => new
                     {
-                        Id = c.Int(nullable: false),
-                        Name = c.String(),
-                    })
-                .PrimaryKey(t => t.Id);
-            
-            CreateTable(
-                "dbo.Roles",
-                c => new
-                    {
-                        Id = c.String(nullable: false, maxLength: 128),
-                        Name = c.String(nullable: false, maxLength: 256),
-                    })
-                .PrimaryKey(t => t.Id)
-                .Index(t => t.Name, unique: true, name: "RoleNameIndex");
-            
-            CreateTable(
-                "dbo.UserRoles",
-                c => new
-                    {
+                        GameId = c.Int(nullable: false),
                         UserId = c.String(nullable: false, maxLength: 128),
-                        RoleId = c.String(nullable: false, maxLength: 128),
-                        IdentityUser_Id = c.String(maxLength: 128),
+                        Following = c.Boolean(nullable: false),
                     })
-                .PrimaryKey(t => new { t.UserId, t.RoleId })
-                .ForeignKey("dbo.Roles", t => t.RoleId, cascadeDelete: true)
-                .ForeignKey("dbo.Users", t => t.IdentityUser_Id)
-                .Index(t => t.RoleId)
-                .Index(t => t.IdentityUser_Id);
+                .PrimaryKey(t => new { t.GameId, t.UserId })
+                .ForeignKey("dbo.Games", t => t.GameId, cascadeDelete: true)
+                .ForeignKey("dbo.Users", t => t.UserId, cascadeDelete: true)
+                .Index(t => t.GameId)
+                .Index(t => t.UserId);
             
             CreateTable(
                 "dbo.Users",
@@ -162,6 +143,39 @@ namespace GameFeed.Domain.Migrations
                 .Index(t => t.IdentityUser_Id);
             
             CreateTable(
+                "dbo.UserRoles",
+                c => new
+                    {
+                        UserId = c.String(nullable: false, maxLength: 128),
+                        RoleId = c.String(nullable: false, maxLength: 128),
+                        IdentityUser_Id = c.String(maxLength: 128),
+                    })
+                .PrimaryKey(t => new { t.UserId, t.RoleId })
+                .ForeignKey("dbo.Roles", t => t.RoleId, cascadeDelete: true)
+                .ForeignKey("dbo.Users", t => t.IdentityUser_Id)
+                .Index(t => t.RoleId)
+                .Index(t => t.IdentityUser_Id);
+            
+            CreateTable(
+                "dbo.Genres",
+                c => new
+                    {
+                        Id = c.Int(nullable: false),
+                        Name = c.String(),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.Roles",
+                c => new
+                    {
+                        Id = c.String(nullable: false, maxLength: 128),
+                        Name = c.String(nullable: false, maxLength: 256),
+                    })
+                .PrimaryKey(t => t.Id)
+                .Index(t => t.Name, unique: true, name: "RoleNameIndex");
+            
+            CreateTable(
                 "dbo.GenreGames",
                 c => new
                     {
@@ -185,6 +199,8 @@ namespace GameFeed.Domain.Migrations
             DropForeignKey("dbo.Images", "Game_Id", "dbo.Games");
             DropForeignKey("dbo.GenreGames", "Game_Id", "dbo.Games");
             DropForeignKey("dbo.GenreGames", "Genre_Id", "dbo.Genres");
+            DropForeignKey("dbo.GameUsers", "UserId", "dbo.Users");
+            DropForeignKey("dbo.GameUsers", "GameId", "dbo.Games");
             DropForeignKey("dbo.GamePlatforms", "PlatformId", "dbo.Platforms");
             DropForeignKey("dbo.GamePlatforms", "GameId", "dbo.Games");
             DropForeignKey("dbo.GameCompanies", "GameId", "dbo.Games");
@@ -192,12 +208,14 @@ namespace GameFeed.Domain.Migrations
             DropForeignKey("dbo.GameCompanies", "CompanyId", "dbo.Companies");
             DropIndex("dbo.GenreGames", new[] { "Game_Id" });
             DropIndex("dbo.GenreGames", new[] { "Genre_Id" });
+            DropIndex("dbo.Roles", "RoleNameIndex");
+            DropIndex("dbo.UserRoles", new[] { "IdentityUser_Id" });
+            DropIndex("dbo.UserRoles", new[] { "RoleId" });
             DropIndex("dbo.UserLogins", new[] { "IdentityUser_Id" });
             DropIndex("dbo.UserClaims", new[] { "IdentityUser_Id" });
             DropIndex("dbo.Users", "UserNameIndex");
-            DropIndex("dbo.UserRoles", new[] { "IdentityUser_Id" });
-            DropIndex("dbo.UserRoles", new[] { "RoleId" });
-            DropIndex("dbo.Roles", "RoleNameIndex");
+            DropIndex("dbo.GameUsers", new[] { "UserId" });
+            DropIndex("dbo.GameUsers", new[] { "GameId" });
             DropIndex("dbo.GamePlatforms", new[] { "PlatformId" });
             DropIndex("dbo.GamePlatforms", new[] { "GameId" });
             DropIndex("dbo.Images", new[] { "Game_Id" });
@@ -205,12 +223,13 @@ namespace GameFeed.Domain.Migrations
             DropIndex("dbo.GameCompanies", new[] { "CompanyId" });
             DropIndex("dbo.GameCompanies", new[] { "GameId" });
             DropTable("dbo.GenreGames");
+            DropTable("dbo.Roles");
+            DropTable("dbo.Genres");
+            DropTable("dbo.UserRoles");
             DropTable("dbo.UserLogins");
             DropTable("dbo.UserClaims");
             DropTable("dbo.Users");
-            DropTable("dbo.UserRoles");
-            DropTable("dbo.Roles");
-            DropTable("dbo.Genres");
+            DropTable("dbo.GameUsers");
             DropTable("dbo.Platforms");
             DropTable("dbo.GamePlatforms");
             DropTable("dbo.Images");

@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System.Data.Entity.Core.Objects;
+using System.Linq;
+using System.Threading.Tasks;
 using GameFeed.Common.Enums;
 using GameFeed.Domain.ApiRepositories;
 using GameFeed.Domain.Entities;
@@ -10,17 +12,18 @@ namespace GameFeed.Services {
     public interface IGameService {
 
         bool GameExistsInDatabase(int id);
-        GameDetailViewModel Detail(int id);
+        GameDetailViewModel Detail(int id, string userId = null);
+        Task ToggleFollow(int gameId, string userId);
     }
 
     public class GameService : IGameService {
 
-        private IGameRepository gameRepository;
-        private IGameApiRepository gameApiRepository;
+        private readonly IGameRepository _gameRepository;
+        private readonly IGameApiRepository _gameApiRepository;
 
         public GameService(IGameRepository gameRepository, IGameApiRepository gameApiRepository) {
-            this.gameRepository = gameRepository;
-            this.gameApiRepository = gameApiRepository;
+            _gameRepository = gameRepository;
+            _gameApiRepository = gameApiRepository;
         }
 
         /// <summary>
@@ -29,26 +32,31 @@ namespace GameFeed.Services {
         /// <param name="id">ID of the Game to check for</param>
         /// <returns>True = Game already exists, False = Game does not exist</returns>
         public bool GameExistsInDatabase(int id) {
-            return gameRepository.GameExistsInDatabase(id);
+            return _gameRepository.GameExistsInDatabase(id);
         }
 
         /// <summary>
         /// Creates the ViewModel for the game detail page
         /// </summary>
         /// <param name="id">ID of the game</param>
+        /// <param name="userId">User ID for checking if the user is following this game (default null if not authenticated)</param>
         /// <returns>The GameDetailViewModel</returns>
-        public GameDetailViewModel Detail(int id) {
+        public GameDetailViewModel Detail(int id, string userId = null) {
             Game game;
 
             //If the game doesn't already exist in the database, get the game from the IGDB API
             if (GameExistsInDatabase(id)) {
-                game = gameRepository.GetGame(id);
+                game = _gameRepository.GetGame(id);
             } else {
-                game = gameApiRepository.GetGame(id);
-                gameRepository.Insert(game);
+                game = _gameApiRepository.GetGame(id);
+                _gameRepository.Insert(game);
             }
 
+            //Check when the user is authenticated if he/she is following this game
+            bool currentUserIsFollowing = game.GameUsers != null && game.GameUsers.Any(x => x.UserId == userId && x.Following);
+
             return new GameDetailViewModel() {
+                Id = game.Id,
                 Name = game.Name,
                 Cover = game.Cover.URL,
                 FirstReleaseDate = game.FirstReleaseDate.ToShortDateString(),
@@ -58,8 +66,19 @@ namespace GameFeed.Services {
                 Developers = game.GameCompanies.Where(c => c.Role == CompanyRole.Developer).Select(c => c.Company.Name),
                 Publishers = game.GameCompanies.Where(c => c.Role == CompanyRole.Publisher).Select(c => c.Company.Name),
                 Screenshots = game.Screenshots.Select(s => s.URL),
-                Summary = game.Summary
+                Summary = game.Summary,
+                CurrentUserIsFollowing = currentUserIsFollowing
             };
+        }
+
+        public async Task ToggleFollow(int gameId, string userId) {
+            bool following = await _gameRepository.IsFollowing(gameId, userId);
+
+            await _gameRepository.UpdateGameUserPair(new GameUser {
+                GameId = gameId,
+                UserId = userId,
+                Following = !following
+            });
         }
     }
 }

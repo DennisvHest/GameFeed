@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using GameFeed.Domain.Repositories;
+using System.Threading.Tasks;
 using GameFeed.Domain.Entities;
 
 namespace GameFeed.Domain.Repositories {
@@ -11,6 +11,8 @@ namespace GameFeed.Domain.Repositories {
         bool GameExistsInDatabase(int id);
         Game GetGame(int id);
         void Insert(Game game);
+        Task UpdateGameUserPair(GameUser gameUserPair);
+        Task<bool> IsFollowing(int gameId, string userId);
     }
 
     public class GameRepository : IGameRepository {
@@ -32,6 +34,21 @@ namespace GameFeed.Domain.Repositories {
         /// <returns>The Game</returns>
         public Game GetGame(int id) {
             return context.Games.FirstOrDefault(g => g.Id == id);
+        }
+
+        public async Task<bool> IsFollowing(int gameId, string userId) {
+            return await context.GameUsers.AnyAsync(x => x.GameId == gameId && x.UserId == userId && x.Following);
+        }
+
+        public async Task UpdateGameUserPair(GameUser gameUserPair) {
+            //If there isn't already a gameuser entry, add one
+            if (context.GameUsers.Any(x => x.GameId == gameUserPair.GameId && x.UserId == gameUserPair.UserId)) {
+                context.Entry(gameUserPair).State = EntityState.Modified;
+            } else {
+                context.GameUsers.Add(gameUserPair);
+            }
+
+            await context.SaveChangesAsync();
         }
 
         /// <summary>

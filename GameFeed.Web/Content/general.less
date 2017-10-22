@@ -61,6 +61,14 @@ input[type="text"], input[type="password"] {
     color: darken(@background, 80%);
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-text-fill-color: white !important;
+}
+
 /* Margin */
 .m-0 {
     margin: 0px;

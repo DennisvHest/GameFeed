@@ -2,6 +2,7 @@
 @using GameFeed.Common
 @using GameFeed.Domain.Entities
 @using GameFeed.Services.ViewModels
+@using Microsoft.AspNet.Identity
 
 @model GameDetailViewModel
 
@@ -59,6 +60,9 @@
 <div id="game-content">
     <div id="game-cover" class="col-sm-offset-1">
         <img src="@Model.Cover" />
+        @using (Ajax.BeginForm("ToggleFollow", "Game", new { gameId = Model.Id, userId = User.Identity.GetUserId() }, new AjaxOptions { HttpMethod = "POST", OnBegin = "checkUserAuthenticated", OnSuccess = "changeFollowButton" })) {
+            <button type="submit" id="follow-button" class="col-xs-12 m-v-10 @(Model.CurrentUserIsFollowing ? "button-subtle" : "")">@(Model.CurrentUserIsFollowing ? "Unfollow" : "Follow")</button>
+        }
     </div>
     <div id="game-feed">
         <div id="game-summary">
@@ -91,14 +95,39 @@
             <h4 class="p-b-5 m-b-5">Release dates</h4>
             <table id="release-dates">
                 <tbody>
-                    @foreach (GamePlatform gamePlatform in Model.Platforms) {
-                        <tr>
-                            <td class="text-label">@gamePlatform.Platform.Name</td>
-                            <td>@gamePlatform.ReleaseDate.ToShortDateString()</td>
-                        </tr>
-                    }
+                @foreach (GamePlatform gamePlatform in Model.Platforms) {
+                    <tr>
+                        <td class="text-label">@gamePlatform.Platform.Name</td>
+                        <td>@gamePlatform.ReleaseDate.ToShortDateString()</td>
+                    </tr>
+                }
                 </tbody>
             </table>
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script>
+        let following = @Json.Encode(Model.CurrentUserIsFollowing);
+
+        function checkUserAuthenticated() {
+            return @Json.Encode(User.Identity.IsAuthenticated);
+        }
+
+        function changeFollowButton() {
+            const followButton = $("#follow-button");
+
+            following = !following;
+
+            if (following) {
+                followButton.text("Unfollow");
+                followButton.addClass("button-subtle");
+            } else {
+                followButton.text("Follow");
+                followButton.removeClass("button-subtle");
+            }
+        }
+    </script>
+}

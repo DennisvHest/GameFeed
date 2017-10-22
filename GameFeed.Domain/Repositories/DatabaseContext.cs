@@ -14,6 +14,7 @@ namespace GameFeed.Domain.Repositories {
         public DbSet<Platform> Platforms { get; set; }
         public DbSet<Company> Companies { get; set; }
         public DbSet<GameCompany> GameCompanies { get; set; }
+        public DbSet<GameUser> GameUsers { get; set; }
 
         protected override void OnModelCreating(System.Data.Entity.DbModelBuilder modelBuilder) {
             base.OnModelCreating(modelBuilder);

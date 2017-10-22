@@ -56,6 +56,13 @@ input[type="password"] {
   border-color: #bebebe;
   color: #252525;
 }
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s;
+  -webkit-text-fill-color: white !important;
+}
 /* Margin */
 .m-0 {
   margin: 0px;

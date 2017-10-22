@@ -10,5 +10,9 @@
   {
     "outputFile": "Content/game-detail.css",
     "inputFile": "Content/game-detail.less"
+  },
+  {
+    "outputFile": "Content/ripple.css",
+    "inputFile": "Content/ripple.less"
   }
 ]
