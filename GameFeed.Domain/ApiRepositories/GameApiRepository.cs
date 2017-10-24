@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using GameFeed.Common.Exceptions;
 using GameFeed.Domain.ApiEntities;
 using GameFeed.Domain.Entities;

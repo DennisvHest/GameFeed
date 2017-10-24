@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using GameFeed.Common;
 using GameFeed.Common.Enums;
 using GameFeed.Common.Helpers;
 using GameFeed.Domain.ApiEntities;
@@ -15,8 +16,6 @@ namespace GameFeed.Domain.ObjectMappers {
         /// <param name="apiGame">ApiGame to be mapped</param>
         /// <returns>Game object</returns>
         public static Game MapGame(ApiGame apiGame) {
-            DateTime unixEpoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
-
             //Screenshots
             IList<Image> screenshots = new List<Image>();
 
@@ -38,7 +37,7 @@ namespace GameFeed.Domain.ObjectMappers {
                     GameId = apiGame.ID,
                     PlatformId = gamePlatform.PlatformId,
                     Platform = apiGame.Platforms.FirstOrDefault(p => p.Id == gamePlatform.PlatformId),
-                    ReleaseDate = unixEpoch.AddMilliseconds(gamePlatform.ReleaseDate)
+                    ReleaseDate = Constants.UnixEpoch.AddMilliseconds(gamePlatform.ReleaseDate)
                 });
             }
 
@@ -66,7 +65,7 @@ namespace GameFeed.Domain.ObjectMappers {
                 Id = apiGame.ID,
                 Name = apiGame.Name,
                 Cover = cover,
-                FirstReleaseDate = unixEpoch.AddMilliseconds(apiGame.FirstReleaseDate),
+                FirstReleaseDate = Constants.UnixEpoch.AddMilliseconds(apiGame.FirstReleaseDate),
                 Rating = apiGame.AggregatedRating,
                 Genres = apiGame.Genres.ToArray(),
                 Screenshots = screenshots,

@@ -10,6 +10,7 @@ namespace GameFeed.Domain.Repositories {
 
         bool GameExistsInDatabase(int id);
         Game GetGame(int id);
+        IEnumerable<Game> GetGamesByIds(IEnumerable<int> gameIds);
         void Insert(Game game);
         Task UpdateGameUserPair(GameUser gameUserPair);
         Task<bool> IsFollowing(int gameId, string userId);
@@ -34,6 +35,10 @@ namespace GameFeed.Domain.Repositories {
         /// <returns>The Game</returns>
         public Game GetGame(int id) {
             return context.Games.FirstOrDefault(g => g.Id == id);
+        }
+
+        public IEnumerable<Game> GetGamesByIds(IEnumerable<int> gameIds) {
+            return context.Games.Where(g => gameIds.Contains(g.Id));
         }
 
         public async Task<bool> IsFollowing(int gameId, string userId) {

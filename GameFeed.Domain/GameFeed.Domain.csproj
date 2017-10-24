@@ -89,12 +89,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApiEntities\ApiFeedItem.cs" />
     <Compile Include="ApiEntities\ApiGame.cs" />
     <Compile Include="ApiEntities\ApiGamePlatform.cs" />
     <Compile Include="ApiRepositories\ApiClient.cs" />
+    <Compile Include="ApiRepositories\FeedApiRepository.cs" />
     <Compile Include="ApiRepositories\GameApiRepository.cs" />
     <Compile Include="ApiRepositories\PlatformApiRepository.cs" />
     <Compile Include="Entities\Company.cs" />
+    <Compile Include="Entities\FeedItem.cs" />
     <Compile Include="Entities\GameCompany.cs" />
     <Compile Include="Entities\GamePlatform.cs" />
     <Compile Include="Entities\GameUser.cs" />
@@ -105,6 +108,7 @@
     <Compile Include="Migrations\201710172022276_initial.Designer.cs">
       <DependentUpon>201710172022276_initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="ObjectMappers\ApiFeedItemMapper.cs" />
     <Compile Include="ObjectMappers\ApiGameMapper.cs" />
     <Compile Include="Repositories\GameRepository.cs" />
     <Compile Include="Repositories\DatabaseContext.cs" />
