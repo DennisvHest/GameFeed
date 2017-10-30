@@ -8,12 +8,12 @@ namespace GameFeed.Domain.ObjectMappers {
         public static FeedItem MapFeedItem(ApiFeedItem apiFeedItem) {
             return new FeedItem {
                 Id = apiFeedItem.Id,
-                DateCreated = Constants.UnixEpoch.AddMilliseconds(apiFeedItem.DateCreated),
+                DatePublished = Constants.UnixEpoch.AddMilliseconds(apiFeedItem.DatePublished),
                 DateUpdated = Constants.UnixEpoch.AddMilliseconds(apiFeedItem.DateUpdated),
                 Url = apiFeedItem.Url,
                 Title = apiFeedItem.Title,
-                Category = apiFeedItem.Category,
-
+                Summary = apiFeedItem.Summary,
+                Image = apiFeedItem.Image
             };
         }
     }

@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using GameFeed.Web.App_Start;
 using GameFeed.Web.Models;
-using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 
 namespace GameFeed.Web.Controllers {
 
-    public class AccountController : Controller {
+    public class UserController : Controller {
 
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;

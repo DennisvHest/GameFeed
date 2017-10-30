@@ -2,17 +2,20 @@
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
+using GameFeed.Domain.ApiRepositories;
 using GameFeed.Domain.Entities;
 
 namespace GameFeed.Domain.Repositories {
 
     public interface IGameRepository {
 
-        bool GameExistsInDatabase(int id);
-        Game GetGame(int id);
+        Task<bool> GameExistsInDatabase(int id);
+        Task<Game> GetGame(int id);
         IEnumerable<Game> GetGamesByIds(IEnumerable<int> gameIds);
+        Task<Game> AddIfNotExist(int id);
         void Insert(Game game);
         Task UpdateGameUserPair(GameUser gameUserPair);
+        IEnumerable<Game> GetFollowingGamesFromUser(string userId);
         Task<bool> IsFollowing(int gameId, string userId);
     }
 
@@ -20,12 +23,16 @@ namespace GameFeed.Domain.Repositories {
 
         private readonly DatabaseContext context;
 
-        public GameRepository(DatabaseContext context) {
+        private readonly IGameApiRepository _gameApiRepository;
+
+        public GameRepository(DatabaseContext context, IGameApiRepository gameApiRepository) {
             this.context = context;
+
+            _gameApiRepository = gameApiRepository;
         }
 
-        public bool GameExistsInDatabase(int id) {
-            return context.Games.Any(g => g.Id == id);
+        public async Task<bool> GameExistsInDatabase(int id) {
+            return await context.Games.AnyAsync(g => g.Id == id);
         }
 
         /// <summary>
@@ -33,8 +40,8 @@ namespace GameFeed.Domain.Repositories {
         /// </summary>
         /// <param name="id">ID of the game</param>
         /// <returns>The Game</returns>
-        public Game GetGame(int id) {
-            return context.Games.FirstOrDefault(g => g.Id == id);
+        public async Task<Game> GetGame(int id) {
+            return await context.Games.FirstOrDefaultAsync(g => g.Id == id);
         }
 
         public IEnumerable<Game> GetGamesByIds(IEnumerable<int> gameIds) {
@@ -54,6 +61,28 @@ namespace GameFeed.Domain.Repositories {
             }
 
             await context.SaveChangesAsync();
+        }
+
+        public IEnumerable<Game> GetFollowingGamesFromUser(string userId) {
+            return context.GameUsers.Where(gu => gu.UserId == userId && gu.Following).Select(gu => gu.Game);
+        }
+
+        /// <summary>
+        /// Retrieves the game with the given id from the IGDB API if it is not currently in the database
+        /// </summary>
+        /// <param name="id">ID of the game</param>
+        /// <returns>The new or already existing game</returns>
+        public async Task<Game> AddIfNotExist(int id) {
+            Game game;
+
+            if (await GameExistsInDatabase(id)) {
+                game = await GetGame(id);
+            } else {
+                game = _gameApiRepository.GetGame(id);
+                Insert(game);
+            }
+
+            return game;
         }
 
         /// <summary>

@@ -14,5 +14,9 @@
   {
     "outputFile": "Content/ripple.css",
     "inputFile": "Content/ripple.less"
+  },
+  {
+    "outputFile": "Content/feed.css",
+    "inputFile": "Content/feed.less"
   }
 ]

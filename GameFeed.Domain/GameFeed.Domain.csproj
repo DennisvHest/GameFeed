@@ -92,6 +92,7 @@
     <Compile Include="ApiEntities\ApiFeedItem.cs" />
     <Compile Include="ApiEntities\ApiGame.cs" />
     <Compile Include="ApiEntities\ApiGamePlatform.cs" />
+    <Compile Include="ApiEntities\ApiPulseGroup.cs" />
     <Compile Include="ApiRepositories\ApiClient.cs" />
     <Compile Include="ApiRepositories\FeedApiRepository.cs" />
     <Compile Include="ApiRepositories\GameApiRepository.cs" />

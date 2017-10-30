@@ -21,13 +21,13 @@ namespace GameFeed.Domain.ObjectMappers {
 
             foreach (Image screenshot in apiGame.Screenshots) {
                 screenshots.Add(new Image() {
-                    URL = ImageHelper.GetFullSizedImageUrl(screenshot.URL)
+                    Url = ImageHelper.GetFullSizedImageUrl(screenshot.Url)
                 });
             }
 
             //Game cover
             Image cover = apiGame.Cover != null ? new Image() {
-                URL = ImageHelper.GetFullSizedImageUrl(apiGame.Cover.URL)
+                Url = ImageHelper.GetFullSizedImageUrl(apiGame.Cover.Url)
             } : null;
 
             //Platforms

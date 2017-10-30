@@ -127,7 +127,7 @@
   <ItemGroup>
     <Compile Include="Controller\TestController.cs" />
     <Compile Include="Controller\TestGameController.cs" />
-    <Compile Include="Controller\TestAccountController.cs" />
+    <Compile Include="Controller\TestUserController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

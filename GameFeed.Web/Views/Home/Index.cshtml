@@ -1,4 +1,14 @@
-﻿
+﻿@using GameFeed.Domain.Entities
+@model GameFeed.Services.ViewModels.HomeViewModel
+
 @{
     ViewBag.Title = "Index";
+}
+
+@section Css {
+    <link href="~/Content/feed.css" rel="stylesheet" />
+}
+
+@foreach (FeedItem feedItem in Model.Feed) {
+    @Html.Partial("~/Views/Feed/_FeedItemCard.cshtml", feedItem)
 }

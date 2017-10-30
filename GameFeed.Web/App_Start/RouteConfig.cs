@@ -17,7 +17,7 @@ namespace GameFeed.Web {
             routes.MapRoute(
                 name: "Detail",
                 url: "game/{id}/{name}",
-                defaults: new { controller = "Game", action = "Detail" }
+                defaults: new { controller = "Game", action = "Detail", name = UrlParameter.Optional }
             );
 
             routes.MapRoute(

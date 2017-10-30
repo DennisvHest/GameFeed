@@ -1,0 +1,16 @@
+﻿@model GameFeed.Domain.Entities.FeedItem
+    
+<div class="feed-item-card col-md-4">
+    @if (Model.Image != null) {
+        <img class="background" src="@Model.Image.Url" />
+    }
+    <div class="game-header">
+        <img src="@Model.Game.Cover.Url"/>
+        <h6>@Model.Game.Name</h6>
+    </div>
+    <div>
+        <h2>@Model.Title</h2>
+        <p>@Model.Summary</p>
+        <p>@Model.DatePublished</p>
+    </div>
+</div>

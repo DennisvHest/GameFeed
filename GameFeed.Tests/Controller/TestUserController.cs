@@ -25,7 +25,7 @@ namespace GameFeed.Tests.Controller {
         [TestMethod]
         public async Task Login_ShouldHaveNoModelErrors_WhenValidLogin() {
             //Arrange
-            AccountController target = new AccountController {
+            UserController target = new UserController {
                 ControllerContext = A.Fake<ControllerContext>(),
                 SignInManager = A.Fake<ApplicationSignInManager>(),
                 UserManager = A.Fake<ApplicationUserManager>()
@@ -51,7 +51,7 @@ namespace GameFeed.Tests.Controller {
         [TestMethod]
         public async Task Login_ShouldHaveModelErrors_WhenModelIsNotValid() {
             //Arrange
-            AccountController target = new AccountController {
+            UserController target = new UserController {
                 ControllerContext = A.Fake<ControllerContext>(),
                 SignInManager = A.Fake<ApplicationSignInManager>(),
                 UserManager = A.Fake<ApplicationUserManager>()

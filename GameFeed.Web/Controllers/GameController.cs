@@ -18,13 +18,13 @@ namespace GameFeed.Web.Controllers {
         }
 
         [HttpGet]
-        public ActionResult Detail(int id) {
+        public async Task<ActionResult> Detail(int id) {
             GameDetailViewModel viewModel;
 
             try {
                 viewModel = User.Identity.IsAuthenticated
-                    ? _gameService.Detail(id, User.Identity.GetUserId())
-                    : _gameService.Detail(id);
+                    ? await _gameService.Detail(id, User.Identity.GetUserId())
+                    : await _gameService.Detail(id);
             } catch (GameDoesNotExistException) {
                 //If a game with the given id is not found, return 404
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound);
