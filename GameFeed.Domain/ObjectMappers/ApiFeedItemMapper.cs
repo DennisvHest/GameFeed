@@ -13,7 +13,7 @@ namespace GameFeed.Domain.ObjectMappers {
                 Url = apiFeedItem.Url,
                 Title = apiFeedItem.Title,
                 Summary = apiFeedItem.Summary,
-                Image = apiFeedItem.Image
+                Image = apiFeedItem.Image != null ? new Image { Id = apiFeedItem.Image.Id } : null
             };
         }
     }

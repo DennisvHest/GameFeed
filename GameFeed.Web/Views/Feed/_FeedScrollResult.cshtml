@@ -1,0 +1,6 @@
+﻿@using GameFeed.Domain.Entities
+@model IEnumerable<FeedItem>
+    
+@foreach (FeedItem item in Model) {
+    @Html.Partial("_FeedItemCard", item)
+}

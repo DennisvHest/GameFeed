@@ -1,8 +1,9 @@
 ﻿using System;
+using GameFeed.Domain.Models;
 
 namespace GameFeed.Domain.Entities {
 
-    public class FeedItem {
+    public class FeedItem : IScrollable {
 
         public int Id { get; set; }
         public DateTime DatePublished { get; set; }

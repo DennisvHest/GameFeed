@@ -16,20 +16,6 @@ namespace GameFeed.Domain.ObjectMappers {
         /// <param name="apiGame">ApiGame to be mapped</param>
         /// <returns>Game object</returns>
         public static Game MapGame(ApiGame apiGame) {
-            //Screenshots
-            IList<Image> screenshots = new List<Image>();
-
-            foreach (Image screenshot in apiGame.Screenshots) {
-                screenshots.Add(new Image() {
-                    Url = ImageHelper.GetFullSizedImageUrl(screenshot.Url)
-                });
-            }
-
-            //Game cover
-            Image cover = apiGame.Cover != null ? new Image() {
-                Url = ImageHelper.GetFullSizedImageUrl(apiGame.Cover.Url)
-            } : null;
-
             //Platforms
             IList<GamePlatform> gamePlatforms = new List<GamePlatform>();
             foreach (ApiGamePlatform gamePlatform in apiGame.GamePlatforms) {
@@ -64,11 +50,11 @@ namespace GameFeed.Domain.ObjectMappers {
             return new Game() {
                 Id = apiGame.ID,
                 Name = apiGame.Name,
-                Cover = cover,
+                Cover = apiGame.Cover != null ? new Image { Id = apiGame.Cover.Id } : null,
                 FirstReleaseDate = Constants.UnixEpoch.AddMilliseconds(apiGame.FirstReleaseDate),
                 Rating = apiGame.AggregatedRating,
                 Genres = apiGame.Genres.ToArray(),
-                Screenshots = screenshots,
+                Screenshots = apiGame.Screenshots.Select(s => new Image { Id = s.Id }).ToList(),
                 Summary = apiGame.Summary,
                 GamePlatforms = gamePlatforms,
                 GameCompanies = gameCompanies

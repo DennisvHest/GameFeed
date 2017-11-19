@@ -17,9 +17,9 @@ namespace GameFeed.Domain.ApiEntities {
         public IEnumerable<ApiGamePlatform> GamePlatforms { get; set; }
         public IEnumerable<Platform> Platforms { get; set; }
         public IEnumerable<Genre> Genres { get; set; }
-        public IEnumerable<Image> Screenshots { get; set; }
+        public IEnumerable<ApiImage> Screenshots { get; set; }
         public IEnumerable<Company> Developers { get; set; }
         public IEnumerable<Company> Publishers { get; set; }
-        public Image Cover { get; set; }
+        public ApiImage Cover { get; set; }
     }
 }

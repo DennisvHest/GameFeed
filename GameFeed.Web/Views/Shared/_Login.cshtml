@@ -3,7 +3,7 @@
 @model LoginModel
 
 <div id="login">
-    @using (Html.BeginForm("Login", "Account", new { returnUrl = Request.RawUrl }, FormMethod.Post, new { @class = "p-b-10", id = "login-form" })) {
+    @using (Html.BeginForm("Login", "User", new { returnUrl = Request.RawUrl }, FormMethod.Post, new { @class = "p-b-10", id = "login-form" })) {
 
         @Html.AntiForgeryToken()
 

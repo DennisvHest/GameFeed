@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using GameFeed.Domain.Entities;
+using GameFeed.Domain.Models;
 using Newtonsoft.Json;
 
 namespace GameFeed.Domain.ApiEntities {
 
-    public class ApiFeedItem {
+    public class ApiFeedItem : IScrollable {
 
         public int Id { get; set; }
         [JsonProperty("published_at")]
@@ -15,7 +16,7 @@ namespace GameFeed.Domain.ApiEntities {
         public string Title { get; set; }
         public string Summary { get; set; }
         [JsonProperty("pulse_image")]
-        public Image Image { get; set; }
+        public ApiImage Image { get; set; }
         public int Game { get; set; }
     }
 }

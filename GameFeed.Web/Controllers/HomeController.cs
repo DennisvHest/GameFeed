@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using System.Web.Mvc;
+using System.Web.UI;
 using GameFeed.Services;
 using GameFeed.Services.ViewModels;
 using Microsoft.AspNet.Identity;
@@ -14,6 +15,7 @@ namespace GameFeed.Web.Controllers {
             _feedService = feedService;
         }
 
+        [OutputCache(Duration = 60, Location = OutputCacheLocation.Server, VaryByCustom = "User")]
         public async Task<ActionResult> Index() {
             HomeViewModel model = User.Identity.IsAuthenticated
                 ? await _feedService.Home(User.Identity.GetUserId())

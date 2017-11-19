@@ -24,7 +24,7 @@ namespace GameFeed.Tests.Controller {
         }
 
         [TestMethod]
-        public void Detail_ShouldHaveGameDetailViewModel_WhenSuccess() {
+        public async Task Detail_ShouldHaveGameDetailViewModel_WhenSuccess() {
             //Arrange
             SetupGameServiceSuccess();
 
@@ -35,7 +35,7 @@ namespace GameFeed.Tests.Controller {
             SetupDefaultIdentity(target);
 
             //Act
-            ViewResult result = (ViewResult) target.Detail(1);
+            ViewResult result = (ViewResult) await target.Detail(1);
 
             //Assert
             Assert.AreEqual(result.Model, _game);

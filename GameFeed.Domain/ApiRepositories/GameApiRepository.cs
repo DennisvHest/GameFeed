@@ -22,7 +22,7 @@ namespace GameFeed.Domain.ApiRepositories {
         }
 
         public Game GetGame(int id) {
-            ApiGame apiGame = _apiClient.Get<ApiGame>($"games/{id}?fields=id,name,summary,first_release_date,screenshots.url,cover.url,release_dates,release_dates,aggregated_rating&expand=game,genres,developers,publishers");
+            ApiGame apiGame = _apiClient.Get<ApiGame>($"games/{id}?fields=id,name,summary,first_release_date,screenshots.cloudinary_id,cover.cloudinary_id,release_dates,release_dates,aggregated_rating&expand=game,genres,developers,publishers");
 
             //If the game does not exist, throw an exception
             if (apiGame == null)

@@ -1,9 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Data.Entity.Core.Objects;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using GameFeed.Common.Enums;
-using GameFeed.Domain.ApiRepositories;
+using GameFeed.Common.Helpers;
 using GameFeed.Domain.Entities;
 using GameFeed.Domain.Repositories;
 using GameFeed.Services.ViewModels;
@@ -49,14 +47,14 @@ namespace GameFeed.Services {
             return new GameDetailViewModel() {
                 Id = game.Id,
                 Name = game.Name,
-                Cover = game.Cover.Url,
+                Cover = ImageHelper.GetImageUrl(game.Cover.Id, ImageSize.CoverBig),
                 FirstReleaseDate = game.FirstReleaseDate.ToShortDateString(),
                 Rating = game.Rating,
                 Genres = game.Genres.Select(g => g.Name),
                 Platforms = game.GamePlatforms,
                 Developers = game.GameCompanies.Where(c => c.Role == CompanyRole.Developer).Select(c => c.Company.Name),
                 Publishers = game.GameCompanies.Where(c => c.Role == CompanyRole.Publisher).Select(c => c.Company.Name),
-                Screenshots = game.Screenshots.Select(s => s.Url),
+                Screenshots = game.Screenshots.Select(s => ImageHelper.GetImageUrl(s.Id)),
                 Summary = game.Summary,
                 CurrentUserIsFollowing = currentUserIsFollowing
             };

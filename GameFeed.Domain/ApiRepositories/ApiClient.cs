@@ -1,7 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using GameFeed.Common;
+using GameFeed.Common.Exceptions;
+using GameFeed.Common.Extensions;
+using GameFeed.Domain.ApiEntities;
+using GameFeed.Domain.Models;
 using Newtonsoft.Json;
 using RestSharp;
 
@@ -10,6 +15,7 @@ namespace GameFeed.Domain.ApiRepositories {
     public interface IApiClient {
         T Get<T>(string endpoint) where T : new();
         IEnumerable<T> GetMultiple<T>(string endpoint);
+        ScrollResponse Scroll<T>(string endpoint);
     }
 
     public class ApiClient : IApiClient {
@@ -38,6 +44,30 @@ namespace GameFeed.Domain.ApiRepositories {
 
             //Deserialize JSON-data to an array of the required type
             return JsonConvert.DeserializeObject<List<T>>(response.Content);
+        }
+
+        /// <summary>
+        /// Returns a scrollable list of the requested objects of type 'T' from the API along with
+        /// the scroll-link and page count. https://igdb.github.io/api/references/pagination/
+        /// </summary>
+        /// <typeparam name="T">The return type</typeparam>
+        /// <param name="endpoint">The endpoint after the base URL</param>
+        /// <returns>A ScrollResponse containing the list of objects of type 'T' and further scroll arguments</returns>
+        public ScrollResponse Scroll<T>(string endpoint) {
+            IRestResponse response = ExecuteRequest($"{endpoint}&scroll=1");
+
+            if (response.StatusCode == HttpStatusCode.BadRequest)
+                throw new GameFeedException("Expired or invalid scroll context.");
+
+            try {
+                return new ScrollResponse {
+                    Scrollables = (IEnumerable<IScrollable>)JsonConvert.DeserializeObject<List<T>>(response.Content),
+                    ScrollUrl = (string)response.Headers.FirstOrDefault(h => h.Name == "X-Next-Page")?.Value,
+                    PageCount = ((string)response.Headers.FirstOrDefault(h => h.Name == "X-Count")?.Value).ParseNullableInt()
+                };
+            } catch (InvalidCastException icex) {
+                throw new GameFeedException("Given scroll type is not of type IScrollable! If the type is correct, make it inherit IScrollable.", icex);
+            }
         }
 
         /// <summary>

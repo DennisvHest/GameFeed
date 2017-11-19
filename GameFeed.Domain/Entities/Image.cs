@@ -1,8 +1,10 @@
-﻿namespace GameFeed.Domain.Entities {
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace GameFeed.Domain.Entities {
 
     public class Image {
 
-        public int ID { get; set; }
-        public string Url { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public string Id { get; set; }
     }
 }

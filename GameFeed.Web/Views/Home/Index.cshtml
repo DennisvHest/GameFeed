@@ -12,3 +12,13 @@
 @foreach (FeedItem feedItem in Model.Feed) {
     @Html.Partial("~/Views/Feed/_FeedItemCard.cshtml", feedItem)
 }
+
+@section Scripts {
+    <script src="~/Scripts/clamp.min.js"></script>
+    <script src="~/Scripts/utilities/clamp-all.js"></script>
+    <script src="~/Scripts/scroll-feed.js"></script>
+    <script>
+        const container = $("#content");
+        const scrollUrl = "@Model.FeedScrollUrl";
+    </script>
+}

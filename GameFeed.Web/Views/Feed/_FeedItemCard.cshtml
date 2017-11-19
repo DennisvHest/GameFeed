@@ -1,16 +1,21 @@
-﻿@model GameFeed.Domain.Entities.FeedItem
-    
-<div class="feed-item-card col-md-4">
-    @if (Model.Image != null) {
-        <img class="background" src="@Model.Image.Url" />
-    }
-    <div class="game-header">
-        <img src="@Model.Game.Cover.Url"/>
-        <h6>@Model.Game.Name</h6>
+﻿@using GameFeed.Common.Enums
+@using GameFeed.Common.Helpers
+@using UrlHelper = GameFeed.Common.Helpers.UrlHelper
+
+@model GameFeed.Domain.Entities.FeedItem
+
+<div class="feed-item-card col-md-4 ripple">
+    <img class="background" src="@(Model.Image != null ? ImageHelper.GetImageUrl(Model.Image.Id, ImageSize.ScreenshotMedium) : "")" />
+    <div class="side pull-left m-r-10">
+        <a href="@UrlHelper.PrettifyGameUrl(Model.Game.Id, Model.Game.Name)">
+            <img src="@ImageHelper.GetImageUrl(Model.Game.Cover.Id, ImageSize.Thumb)" alt="@Model.Title" />
+        </a>
+        <b>@Model.DatePublished.ToShortDateString()</b>
     </div>
-    <div>
-        <h2>@Model.Title</h2>
-        <p>@Model.Summary</p>
-        <p>@Model.DatePublished</p>
-    </div>
+    <a href="@Model.Url">
+        <div class="feed-content p-l-10">
+            <h2 clamp="3">@Html.Raw(Model.Title)</h2>
+            <p clamp="5">@Model.Summary</p>
+        </div>
+    </a>
 </div>

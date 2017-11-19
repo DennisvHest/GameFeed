@@ -42,9 +42,12 @@
   <ItemGroup>
     <Compile Include="Constants.cs" />
     <Compile Include="Enums\CompanyRole.cs" />
+    <Compile Include="Enums\ImageSize.cs" />
     <Compile Include="Exceptions\GameDoesNotExistException.cs" />
+    <Compile Include="Exceptions\GameFeedException.cs" />
     <Compile Include="Extensions\FloatExtensions.cs" />
     <Compile Include="Extensions\EnumerableExtensions.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Helpers\ImageHelper.cs" />
     <Compile Include="Helpers\UrlHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
